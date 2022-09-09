@@ -1,10 +1,22 @@
 import Header from "./components/Header";
 import FileList from "./components/FileList";
-function App() {
+import { useState, useEffect, useRef} from 'react'
+import fileService from './services/files'
+
+const App = () => {
+
+  const [files, setFiles] = useState([])
+
+
+  useEffect(() => {
+    fileService.getAll().then(files =>
+      setFiles( files )
+    )  
+  }, [])
   return (
     <div>
       <Header/>
-      <FileList uploadedFiles={null}></FileList>
+      <FileList uploadedFiles={files}></FileList>
     </div>
   );
 }
