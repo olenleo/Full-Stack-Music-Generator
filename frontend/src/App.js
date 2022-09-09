@@ -9,7 +9,12 @@ const App = () => {
   useEffect(() => {
     fileService.getAll().then(files =>
       setFiles( files )
-    )  
+    )
+    
+    fileService.getMidiData("Movie_Themes_-_Star_Wars_-_by_John_Willams.mid").then(data => {
+      console.log(data)
+    })
+    
   }, [])
   return (
     <div>
