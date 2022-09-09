@@ -1,4 +1,5 @@
 const router = require('express').Router()
+const crypto = require("crypto");
 const uploadFile = require("../middleware/upload");
 const fs = require("fs");
 
@@ -26,6 +27,7 @@ const upload = async (req, res) => {
     });
   }
 };
+
 const getListFiles = (req, res) => {
   console.log('GetListFiles request')
   const directoryPath = __basedir + "/resources/static/assets/midi/";
@@ -39,6 +41,7 @@ const getListFiles = (req, res) => {
     let fileInfos = [];
     files.forEach((file) => {
       fileInfos.push({
+        id: crypto.randomBytes(16).toString("hex"),
         name: file,
         url: directoryPath + file,
       });
