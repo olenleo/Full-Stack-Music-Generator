@@ -1,8 +1,9 @@
 const router = require('express').Router()
 const crypto = require("crypto");
 const uploadFile = require("../middleware/upload");
+const midiParser = require('midi-parser-js');
 const fs = require("fs");
-
+/*
 const upload = async (req, res) => {
   console.log('Upload request')
   console.log('Request body:', req.body)
@@ -27,7 +28,7 @@ const upload = async (req, res) => {
     });
   }
 };
-
+*/
 const getListFiles = (req, res) => {
   console.log('GetListFiles request')
   const directoryPath = __basedir + "/resources/static/assets/midi/";
@@ -49,6 +50,21 @@ const getListFiles = (req, res) => {
     res.status(200).send(fileInfos);
   });
 };
+
+
+const readFile = (req, result) => {
+  console.log(req.params)
+  console.log('Read a file request:', req.params.name)
+  const filePath = __basedir + '/resources/static/assets/midi/' + req.params.name;
+  console.log('FIle path', filePath)
+  let midiArray = ""
+  const parsedFile = fs.readFile(filePath, 'base64', function (err,data) {
+    midiArray = midiParser.parse(data)
+    result.status(200).send(midiArray)
+  });
+  
+}
+/*
 const download = (req, res) => {
   console.log('Download! ')
   const fileName = req.params.name;
@@ -61,7 +77,9 @@ const download = (req, res) => {
     }
   });
 };
+*/
 
+/*
 const remove = (request, response) => {
   console.log(request.params)
   const songToDelete = Midi.findById(request.params.name)
@@ -71,10 +89,9 @@ const remove = (request, response) => {
   Midi.findByIdAndRemove(request.params.name)
   response.status(204).end()
 };
-
+*/
 module.exports = {
-  upload,
+  
   getListFiles,
-  remove,
-  download
+  readFile
 };

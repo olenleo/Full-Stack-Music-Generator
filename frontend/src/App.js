@@ -1,13 +1,11 @@
 import Header from "./components/Header";
 import FileList from "./components/FileList";
-import { useState, useEffect, useRef} from 'react'
+import { useState, useEffect} from 'react'
 import fileService from './services/files'
 
 const App = () => {
 
   const [files, setFiles] = useState([])
-
-
   useEffect(() => {
     fileService.getAll().then(files =>
       setFiles( files )
