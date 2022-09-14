@@ -14,7 +14,7 @@ const FileList = ({uploadedFiles}) => {
         <ul>
             {uploadedFiles.map(f => 
            <File key = {f.id} file = {f}/>
-        )};
+        )}
         </ul>
     </div>
     );
