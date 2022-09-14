@@ -25,7 +25,7 @@ const App = () => {
 
   if (isLoading) {
     return (
-      <h1>Loading...</h1>
+      <h1>Loading information from backend...</h1>
     )
   }
   return (
