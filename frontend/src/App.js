@@ -18,7 +18,6 @@ const App = () => {
     
     fileService.getMidiData("Movie_Themes_-_Star_Wars_-_by_John_Willams.mid").then(data => {
       setMidiAsJSON( data )
-      
     })
     
   }, [])
@@ -33,6 +32,7 @@ const App = () => {
       <Header/>
       <FileList uploadedFiles={files}></FileList>
       <JSONmidiParser midiData={midiAsJSON}/>
+      
     </div>
   );
 }

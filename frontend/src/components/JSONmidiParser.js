@@ -21,14 +21,6 @@ const JSONmidiParser = ({midiData}) => {
             
             <p>Render track[1]:</p>
             <SonicPiFormatter trackdata={data} trieLength={6}/>
-            <ul>
-               {data.event.map(TrackEvent => (
-                
-                <Track event={TrackEvent}/>
-               ))}
-            </ul>
-            
-             
         </div>
     )
 }
