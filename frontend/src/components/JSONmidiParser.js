@@ -1,6 +1,4 @@
 import React from "react";
-
-import Track from "./Track";
 import SonicPiFormatter from "../utils/SonicPiFormatter";
 const JSONmidiParser = ({midiData}) => {
     console.log('JSONmidiParser recieves ', midiData)
@@ -13,12 +11,11 @@ const JSONmidiParser = ({midiData}) => {
         )
     }
     const data = midiData.track[1]
+    const tracks = midiData.track.length;
     return (
-
         <div>
             <h3>Midi data:</h3>
-            <p>Number of tracks: {data.length}</p>
-            
+            <p>Number of tracks: {tracks}</p>
             <p>Render track[1]:</p>
             <SonicPiFormatter trackdata={data} trieLength={6}/>
         </div>
