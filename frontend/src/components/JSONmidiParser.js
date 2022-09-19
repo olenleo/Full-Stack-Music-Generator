@@ -1,8 +1,10 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import SonicPiFormatter from '../utils/SonicPiFormatter';
-const JSONmidiParser = ({midiData}) => {
-	console.log('JSONmidiParser recieves ', midiData);
+
+const JSONmidiParser = ({midiData, title, track}) => {
+	console.log('JSONmidiParser recieves ', title, midiData, track);
+
 	if (midiData.length === 0) {
 		return (
 			<div>
@@ -11,11 +13,13 @@ const JSONmidiParser = ({midiData}) => {
 			</div>
 		);
 	}
-	const data = midiData.track[1];
+	const data = midiData[0].track;
+	console.log('JSON midi parser data is : ', data);
 	const tracks = midiData.track.length;
 	return (
 		<div>
 			<h3>Midi data:</h3>
+			<p>Track title: {title}</p>
 			<p>Number of tracks: {tracks}</p>
 			<p>Render track[1]:</p>
 			<SonicPiFormatter trackdata={data} trieLength={6}/>

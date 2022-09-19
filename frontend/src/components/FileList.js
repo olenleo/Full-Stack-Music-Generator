@@ -7,21 +7,23 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 
-const FileList = ({uploadedFiles}) => {
+const FileList = ({uploadedFiles, handleClick}) => {
 	if (uploadedFiles === null) {
-		return (<div>
-			<p>No files present.</p>
-		</div>);
+		return (
+			<div>
+				<p>No files present.</p>
+			</div>
+		);
 	} else {      
 		return (        
 			<div>
 				<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
 				<Box>
 					{uploadedFiles.map(f => 
-						<List  key ={f.id}>
+						<List key ={f.id}>
 							<Divider />
 							<ListItem disablePadding>
-								<ListItemButton onClick={()=> {console.log('This should generate music from', f.name);}}>
+								<ListItemButton onClick={()=> {handleClick(f);}}>
 									<ListItemText primary={f.name}/>
 								</ListItemButton>
 							</ListItem>

@@ -9,12 +9,13 @@ const setToken = newToken => {
 };
 
 const getAll = () => {
-	const request = axios.get(baseUrl);
+	const request = axios.get(baseUrl + 'getList');
 	return request.then(response => response.data);
 };
 
 const getMidiData = ( filename ) => {
-	const request = axios.get(baseUrl + filename);
+	console.log('getMidiData(',filename,')');
+	const request = axios.get(baseUrl + 'get/' + filename);
 	return request.then(response => response.data);
 };
 

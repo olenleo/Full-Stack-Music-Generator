@@ -7,5 +7,6 @@
 | 9.9   | 4.5   | More work on the backend, midi parsing, install material_UI|
 | 12.9  | 2     | Frontend: MIDI json data parsing |
 | 14.9  | 2     | Frontend: MIDI json data >> A Sonic Pi compatible document |
-
-| SUM   | 11  |  | 
+| 19.9  | 9.00 -     | 
+| :----:|:----- | :-----|
+| SUM   | 14.5  |  | 

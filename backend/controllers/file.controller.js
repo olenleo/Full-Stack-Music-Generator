@@ -52,9 +52,9 @@ const getListFiles = (req, res) => {
 };
 
 
-const readFile = (req, result) => {
-  console.log('Recieved: readFile ', req.params.name)
-  const filePath = __basedir + '/resources/static/assets/midi/' + req.params.name;
+const readFile = (request, result) => {
+  console.log('Recieved: readFile ', request.params.name)
+  const filePath = __basedir + '/resources/static/assets/midi/' + request.params.name;
   let midiArray = ""
   const parsedFile = fs.readFile(filePath, 'base64', function (err,data) {
     midiArray = midiParser.parse(data)

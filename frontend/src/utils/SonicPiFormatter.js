@@ -28,9 +28,6 @@ const formatAndPushNoteEvent = (event, index) => {
 const SonicPiFormatter =( {trackdata} ) => {
     
 	noteEvents = [];
-	console.log('Track data!' , trackdata);
-    
-
 
 	trackdata.event.sort((a,b) => {
 		return a.deltaTime - b.deltaTime;
@@ -39,6 +36,7 @@ const SonicPiFormatter =( {trackdata} ) => {
 	trackdata.event.map((event, index) => (
 		formatAndPushNoteEvent(event, index)
 	));
+	
 	return (
 		<div>
 			<h1>Sonic Pi formatter here</h1>
