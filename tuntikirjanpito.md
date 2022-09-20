@@ -10,5 +10,6 @@
 | 19.9  | 2.5   | Frontend: Start track listing component |
 | 20.9  | 1.5   | Frontend: SonicPiFormatter lists some note information|
 | 20.9  | 1.5   | Search for libraries for midi writing and note visualization|
+| 20.9  | 0.5   | Initialise github actions workflow, but first separate the front- and backend to separate repositories  |
 | :----:|:----- | :-----|
 | SUM   | 17  |  | 
