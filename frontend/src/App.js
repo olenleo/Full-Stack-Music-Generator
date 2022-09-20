@@ -14,7 +14,7 @@ const App = () => {
 	// eslint-disable-next-line no-unused-vars
 	const [selectedFile, setSelectedFile] = useState([]);
 	// eslint-disable-next-line no-unused-vars
-	const [selectedTrack, setSelectedTrack] = useState([]);
+	const [selectedTrack, setSelectedTrack] = useState();
 	// eslint-disable-next-line no-unused-vars
 	const [midiAsJSON, setMidiAsJSON] = useState([]);
 	const [isLoading, setLoading] = useState(true);
@@ -37,6 +37,7 @@ const App = () => {
 		event.preventDefault();
 		console.log('HandleFileSelection (', title, ')');
 		setSelectedFile(title);
+		setSelectedTrack();
 		fileService.getMidiData(title.name).then(data => setMidiAsJSON(data));
 	};
 

@@ -8,5 +8,6 @@
 | 12.9  | 2     | Frontend: MIDI json data parsing |
 | 14.9  | 2     | Frontend: MIDI json data >> A Sonic Pi compatible document |
 | 19.9  | 2.5   | Frontend: Start track listing component |
+| 20.9  | 1.5   | Frontend: SonicPiFormatter lists some note information|
 | :----:|:----- | :-----|
 | SUM   | 17  |  | 

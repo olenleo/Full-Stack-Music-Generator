@@ -26,7 +26,7 @@ const formatAndPushNoteEvent = (event, index) => {
 
 
 const SonicPiFormatter =( {trackdata, track} ) => {
-	if (trackdata.length === 0 || track.length === 0) {
+	if (trackdata.length === 0 || track === undefined) {
 		return(<div><p>Please select song title and track.</p></div>);
 	}
 	noteEvents = [];
