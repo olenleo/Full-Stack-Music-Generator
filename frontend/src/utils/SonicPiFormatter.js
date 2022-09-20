@@ -25,15 +25,17 @@ const formatAndPushNoteEvent = (event, index) => {
 };
 
 
-const SonicPiFormatter =( {trackdata} ) => {
-    
+const SonicPiFormatter =( {trackdata, track} ) => {
+	if (trackdata.length === 0 || track.length === 0) {
+		return(<div><p>Please select song title and track.</p></div>);
+	}
 	noteEvents = [];
-
-	trackdata.event.sort((a,b) => {
+	console.log('Trackdata[', track, ']', trackdata.track[track]);
+	trackdata.track[track].event.sort((a,b) => {
 		return a.deltaTime - b.deltaTime;
 	});
 
-	trackdata.event.map((event, index) => (
+	trackdata.track[track].event.map((event, index) => (
 		formatAndPushNoteEvent(event, index)
 	));
 	
@@ -48,6 +50,7 @@ const SonicPiFormatter =( {trackdata} ) => {
 			<h1>End Sonic Pi formatter</h1>
 		</div>
 	);
+	
 };
 
 export default SonicPiFormatter;

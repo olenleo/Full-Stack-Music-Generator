@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
 import * as React from 'react';
@@ -14,14 +13,10 @@ const TrackList = ( { midiDataAsJSON, handleClick }) => {
 		return(
 			<div>
 				<h3>The track list should be here</h3>
-				
 			</div>
 		);
 	} else {
-		console.log('TrackList recieves ', midiDataAsJSON);
 		const trackInfo = midiDataAsJSON.track;
-		console.log('trackInfo', trackInfo);
-		let text = '';
 		return (        
 			<div>
 				<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
