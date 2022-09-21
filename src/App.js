@@ -7,12 +7,16 @@ import JSONmidiParser from './components/JSONmidiParser';
 import Button from '@mui/material/Button';
 import TrackList from './components/TrackList';
 import SonicPiFormatter from './utils/SonicPiFormatter';
+import upload from './services/files';
+import FileUploadForm from './components/FileUploadForm';
 
 const App = () => {
 
 	const [files, setFiles] = useState([]);
 	// eslint-disable-next-line no-unused-vars
 	const [selectedFile, setSelectedFile] = useState([]);
+	const [uploadedFile, setUploadedFile] = useState([]);
+	const [isFilePicked, setIsFilePicked] = useState(false);
 	// eslint-disable-next-line no-unused-vars
 	const [selectedTrack, setSelectedTrack] = useState();
 	// eslint-disable-next-line no-unused-vars
@@ -33,7 +37,7 @@ const App = () => {
 		);
 	}
 
-	const handleFileSelection = (title) => {
+	const handleFileSelection = async (title) => {
 		event.preventDefault();
 		console.log('HandleFileSelection (', title, ')');
 		setSelectedFile(title);
@@ -41,24 +45,24 @@ const App = () => {
 		fileService.getMidiData(title.name).then(data => setMidiAsJSON(data));
 	};
 
-	const HandleTrackSelection = (track) => {
+	const HandleTrackSelection =  async (track, event) => {
 		event.preventDefault();
 		console.log('Handle track selection', track);
 		setSelectedTrack(track);
 	};
 
+      
+
 	return (
 		<div>
 			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
 			<Header/>
-			<p>Selected file {selectedFile.name}</p>
-			<p>Selected track: {selectedTrack}</p>
-			<h2>Select file:</h2>
+			<FileUploadForm></FileUploadForm>
 			<FileList uploadedFiles={files} handleClick={handleFileSelection}/>
 			<TrackList midiDataAsJSON={midiAsJSON} selectedFileID={selectedFile.id} handleClick={HandleTrackSelection}/>
 			<SonicPiFormatter track={selectedTrack} trackdata={midiAsJSON}></SonicPiFormatter>
 			<Button variant="contained" onClick={()=> console.log('Generate')}>Trie again!</Button>
-      
+
 		</div>
 	);
 };

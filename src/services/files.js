@@ -19,5 +19,11 @@ const getMidiData = ( filename ) => {
 	return request.then(response => response.data);
 };
 
-const exportedObject =  { getAll, setToken, getMidiData };
+const upload = ( file ) => {
+	console.log('upload', file);
+	const request = axios.post((baseUrl + '/upload/'), file);
+	return request.then(response => response.data);
+};
+
+const exportedObject =  { getAll, setToken, getMidiData, upload};
 export default exportedObject;

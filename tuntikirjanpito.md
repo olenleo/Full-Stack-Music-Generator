@@ -11,5 +11,6 @@
 | 20.9  | 1.5   | Frontend: SonicPiFormatter lists some note information|
 | 20.9  | 1.5   | Search for libraries for midi writing and note visualization|
 | 20.9  | 0.5   | Initialise github actions workflow, but first separate the front- and backend to separate repositories  |
+| 21.9  | 4.5   | Backend: File uploading, configure fly.io to workflow|
 | :----:|:----- | :-----|
 | SUM   | 17  |  | 
