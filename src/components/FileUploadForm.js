@@ -11,7 +11,7 @@ const FileUploadForm = ( {refreshFiles}) => {
 			// eslint-disable-next-line no-unused-vars
 			files.upload(formData).then(response => response.data);
 		}
-	    catch(error) {
+		catch(error) {
 			console.log(error);
 		}
 		refreshFiles();

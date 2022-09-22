@@ -13,5 +13,7 @@
 | -  | -     | Initialise github actions workflow, but first separate the front- and backend to separate repositories  |
 | 21.9  | 4.5   | Backend: File uploading, configure fly.io to workflow|
 | 22.9  | 1     | File upload: Fix multer errors. NOTE: routing is quite messy.|
+| --	| 2	| Deploy to fly.io, hunt bugs |
+
 | :----:|:----- | :-----|
-| SUM   | 26  |  | 
+| SUM   | 28  |  | 
