@@ -21,7 +21,7 @@ const getMidiData = ( filename ) => {
 
 const upload = ( file ) => {
 	console.log('upload', file);
-	const request = axios.post((baseUrl + '/upload/'), file);
+	const request = axios.post(('http://localhost:3001/api/files/upload/'), file);
 	return request.then(response => response.data);
 };
 

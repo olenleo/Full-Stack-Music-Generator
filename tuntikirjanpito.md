@@ -8,9 +8,10 @@
 | 12.9  | 2     | Frontend: MIDI json data parsing |
 | 14.9  | 2     | Frontend: MIDI json data >> A Sonic Pi compatible document |
 | 19.9  | 2.5   | Frontend: Start track listing component |
-| 20.9  | 1.5   | Frontend: SonicPiFormatter lists some note information|
-| 20.9  | 1.5   | Search for libraries for midi writing and note visualization|
-| 20.9  | 0.5   | Initialise github actions workflow, but first separate the front- and backend to separate repositories  |
+| 20.9  | 3.5   | Frontend: SonicPiFormatter lists some note information|
+| -  | -     | Search for libraries for midi writing and note visualization|
+| -  | -     | Initialise github actions workflow, but first separate the front- and backend to separate repositories  |
 | 21.9  | 4.5   | Backend: File uploading, configure fly.io to workflow|
+| 22.9  | 1     | File upload: Fix multer errors. NOTE: routing is quite messy.|
 | :----:|:----- | :-----|
-| SUM   | 17  |  | 
+| SUM   | 26  |  | 
