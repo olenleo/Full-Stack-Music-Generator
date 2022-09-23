@@ -6,9 +6,9 @@ const FileUploadForm = ( {refreshFiles}) => {
 	const [selectedFile, setSelectedFile] = useState(null);
 
 	const handleSubmit = async( event ) => {
-        event.preventDefault();
+		event.preventDefault();
 		const formData = new FormData();
-        formData.append('uploadMidi', selectedFile);
+		formData.append('uploadMidi', selectedFile);
 		try {
 			// eslint-disable-next-line no-unused-vars
 			files.upload(formData).then(response => response.data);
@@ -20,7 +20,7 @@ const FileUploadForm = ( {refreshFiles}) => {
 	};
 
 	const handleFileSelect = ( event ) => {
-        event.preventDefault();
+		event.preventDefault();
 		setSelectedFile(event.target.files[0]);
 		console.log('Selected file:', selectedFile);
 	};

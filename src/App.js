@@ -40,8 +40,8 @@ const App = () => {
 		fileService.getMidiData(title.name).then(data => setMidiAsJSON(data));
 	};
 
-	const HandleTrackSelection =  async (track, event) => {
-		event.preventDefault();
+	const HandleTrackSelection =  async (track) => {
+		
 		console.log('Handle track selection', track);
 		setSelectedTrack(track);
 	};
