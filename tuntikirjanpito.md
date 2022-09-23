@@ -14,6 +14,7 @@
 | 21.9  | 4.5   | Backend: File uploading, configure fly.io to workflow|
 | 22.9  | 1     | File upload: Fix multer errors. NOTE: routing is quite messy.|
 | --	| 2	| Deploy to fly.io, hunt bugs |
+| 23.9	| 1	| Study material.ui, deployment related bugfix |
 
 | :----:|:----- | :-----|
-| SUM   | 28  |  | 
+| SUM   | 29  |  | 
