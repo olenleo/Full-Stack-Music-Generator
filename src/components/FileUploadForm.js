@@ -1,12 +1,14 @@
 /* eslint-disable react/prop-types */
-import React from 'react';
+import React, { useState } from 'react';
 import files from '../services/files.js';
 
 const FileUploadForm = ( {refreshFiles}) => {
-	const [selectedFile, setSelectedFile] = React.useState(null);
+	const [selectedFile, setSelectedFile] = useState(null);
 
-	const handleSubmit = async() => {
+	const handleSubmit = async( event ) => {
+        event.preventDefault();
 		const formData = new FormData();
+        formData.append('uploadMidi', selectedFile);
 		try {
 			// eslint-disable-next-line no-unused-vars
 			files.upload(formData).then(response => response.data);
@@ -17,7 +19,8 @@ const FileUploadForm = ( {refreshFiles}) => {
 		refreshFiles();
 	};
 
-	const handleFileSelect = (event) => {
+	const handleFileSelect = ( event ) => {
+        event.preventDefault();
 		setSelectedFile(event.target.files[0]);
 		console.log('Selected file:', selectedFile);
 	};
