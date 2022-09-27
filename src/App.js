@@ -41,7 +41,7 @@ const App = () => {
 	};
 
 	const HandleTrackSelection =  (track) => {
-        console.log('Handle track selection', track);
+		console.log('Handle track selection', track);
 		setSelectedTrack(track);
 	};
 
@@ -61,7 +61,6 @@ const App = () => {
 			<TrackList midiDataAsJSON={midiAsJSON} handleClick={HandleTrackSelection}/>
 			<SonicPiFormatter track={selectedTrack} trackdata={midiAsJSON}></SonicPiFormatter>
 			<Button variant="contained" onClick={()=> console.log('Generate')}>Trie again!</Button>
-
 		</div>
 	);
 };

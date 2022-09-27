@@ -17,5 +17,6 @@
 | 23.9	| 1.5	| Study material.ui, deployment related bugfix, study backend file storage |
 | 27.9  |  1    | Track down a bug in frontend, deploy to fly.io |
 | -     |  1    | Frontend utility for mapping MIDI pitch to note, eg. 60 => C5|
+| -     |  1    | Begin frontend utility: parse JSON formatted midi notes. Adapted from previous work on a similar project.|
 | :----:|:----- | :-----|
 | SUM   | 32    |                                                                | 
