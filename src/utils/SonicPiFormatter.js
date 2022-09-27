@@ -9,8 +9,6 @@
 import React from 'react';
 import Note from '../components/Note';
 
-
-
 let noteEvents = [];
 const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C'];
 const tresholds = [109,97,85,73,61,49,37,25,13];

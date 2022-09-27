@@ -1,7 +1,7 @@
-# Documentation
+# Documentation for working hours
 
-| päivä | aika  | mitä tein  |
-| :----:|:----- | :-----|
+| Date | Hours  | Task  |
+| :----:|:----- | :-----                                            |
 | 7.9.	| 3     | Initial repository, planning the application |
 | 8,9.  | 3     | Work on the backend |
 | 9.9   | 4.5   | More work on the backend, midi parsing, install material_UI|
@@ -9,13 +9,13 @@
 | 14.9  | 2     | Frontend: MIDI json data >> A Sonic Pi compatible document |
 | 19.9  | 2.5   | Frontend: Start track listing component |
 | 20.9  | 3.5   | Frontend: SonicPiFormatter lists some note information|
-| -  | -     | Search for libraries for midi writing and note visualization|
-| -  | -     | Initialise github actions workflow, but first separate the front- and backend to separate repositories  |
+| -  | -        | Search for libraries for midi writing and note visualization|
+| -  | -        | Initialise github actions workflow, but first separate the front- and backend to separate repositories  |
 | 21.9  | 4.5   | Backend: File uploading, configure fly.io to workflow|
 | 22.9  | 1     | File upload: Fix multer errors. NOTE: routing is quite messy.|
-| -	| 2	| Deploy to fly.io, hunt bugs |
+| -	    | 2	    | Deploy to fly.io, hunt bugs |
 | 23.9	| 1.5	| Study material.ui, deployment related bugfix, study backend file storage |
-| 27.9  |  1 | Track down a bug in frontend, deploy to fly.io |
-| - |  1 | Frontend utility for mapping MIDI pitch to note, eg. 60 => C5|
+| 27.9  |  1    | Track down a bug in frontend, deploy to fly.io |
+| -     |  1    | Frontend utility for mapping MIDI pitch to note, eg. 60 => C5|
 | :----:|:----- | :-----|
-| SUM   | 30  |  | 
+| SUM   | 32    |                                                                | 

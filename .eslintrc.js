@@ -10,6 +10,7 @@ module.exports = {
 	],
 	'overrides': [
 	],
+	'ignorePatterns': ['node_modules/'],
 	'parserOptions': {
 		'ecmaVersion': 'latest',
 		'sourceType': 'module'
@@ -19,7 +20,6 @@ module.exports = {
 	],
 	'rules': {
 		'indent': [1, 'tab'],
-        
         
 		'linebreak-style': [
 			'error',
