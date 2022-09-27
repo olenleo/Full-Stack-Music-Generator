@@ -15,6 +15,6 @@
 | 22.9  | 1     | File upload: Fix multer errors. NOTE: routing is quite messy.|
 | --	| 2	| Deploy to fly.io, hunt bugs |
 | 23.9	| 1.5	| Study material.ui, deployment related bugfix, study backend file storage |
-
+| 27.9  |  1 | Track down a bug in frontend, deploy to fly.io |
 | :----:|:----- | :-----|
-| SUM   | 29  |  | 
+| SUM   | 30  |  | 

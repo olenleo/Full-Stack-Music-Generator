@@ -40,9 +40,8 @@ const App = () => {
 		fileService.getMidiData(title.name).then(data => setMidiAsJSON(data));
 	};
 
-	const HandleTrackSelection =  async (track) => {
-		
-		console.log('Handle track selection', track);
+	const HandleTrackSelection =  (track) => {
+        console.log('Handle track selection', track);
 		setSelectedTrack(track);
 	};
 
@@ -59,7 +58,7 @@ const App = () => {
 			<Header/>
 			<FileUploadForm refreshFiles={refreshFileList}/>
 			<FileList uploadedFiles={files} handleClick={handleFileSelection}/>
-			<TrackList midiDataAsJSON={midiAsJSON} selectedFileID={selectedFile.id} handleClick={HandleTrackSelection}/>
+			<TrackList midiDataAsJSON={midiAsJSON} handleClick={HandleTrackSelection}/>
 			<SonicPiFormatter track={selectedTrack} trackdata={midiAsJSON}></SonicPiFormatter>
 			<Button variant="contained" onClick={()=> console.log('Generate')}>Trie again!</Button>
 
