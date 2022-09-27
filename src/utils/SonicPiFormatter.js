@@ -9,13 +9,39 @@
 import React from 'react';
 import Note from '../components/Note';
 
+
+
 let noteEvents = [];
+const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C'];
+const tresholds = [109,97,85,73,61,49,37,25,13];
+
+const parseNote = (note) => {
+	if (typeof note === String) {
+		return 0;
+	} else if (typeof note === 'number') {
+		const letter = note % 12;
+		const octave = parseOctave(note);
+		console.log('Note', note, 'returns ' , notes[letter] + octave);
+		return notes[letter] + octave;
+	}
+};
+const parseOctave = (note) => {
+	for (const t in tresholds) {
+		if (note < 13) {
+			return 0;
+		} else if (note > tresholds[t]) {
+			console.log('note: ', note, t);
+			return 9 - t;
+		}
+	}
+};
 
 const formatAndPushNoteEvent = (event, index) => {
 	if (event.type === 9 || event.type === 11) {
 		const key = '' + event.deltaTime + index;
+		const pitch = parseNote(event.data[0]);
 		const noteJSONarray = {
-			note: `${event.data[0]}`,
+			note: `:${pitch}`,
 			amp: `${event.data[1]}`,
 			sleep: 'sleep 1',
 			key: `${key}`
