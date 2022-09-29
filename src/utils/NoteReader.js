@@ -1,14 +1,18 @@
+/* eslint-disable no-unused-vars */
 // Initialise variables
+let noteEvents = []; 
+const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C'];
+const tresholds = [109,97,85,73,61,49,37,25,13];
 let totalReadNotes = 0;
 let firstNoteOffset = 0;
-const trie = new Trie();
+
 const len = 5; // Length of trie 'word', or rather the length of saved note patterns. TODO: This should arrive from props.
 
 // DeltaTime and 'note on' & 'note off'-related variables
 // We need to track when notes start and end for rhythm and chords.
-let noteStartDeltaTimes = [];
+let noteStartDeltaTimes = []; // Tracks which midi notes are running; if note N is not running enter -1
 for (let i = 1; i <= 127; i++) {
-	noteStartDeltaTimes.push(1);
+	noteStartDeltaTimes.push(-1);
 }
 let lastSeenNoteEnd = -1;
 let lastSeenNoteStart = 0;
@@ -30,38 +34,100 @@ function NoteReader() {
 	//this.division = division
 }
 
-NoteReader.prototype.readJSON = function(formattedMidi) {
-	console.log('READ JSON');
-	this.firstNoteOffset = getOffset(formattedMidi) + 1;
-	for (let i = 0; i < formattedMidi.length; i++) {
-		handleNote(formattedMidi[i], previousNoteEndDeltatime);
+
+const parseNote = (note) => {
+	if (typeof note === String) {
+		return 0;
+	} else if (typeof note === 'number') {
+		const letter = note % 12;
+		const octave = parseOctave(note);
+		return notes[letter] + octave;
+	}
+};
+const parseOctave = (note) => {
+	for (const t in tresholds) {
+		if (note < 13) {
+			return 0;
+		} else if (note > tresholds[t]) {
+			return 9 - t;
+		}
+	}
+};
+
+//              Fix method below!
+// V --- V                      V---- V
+const formatAndPushNoteEvent = (event, index) => {
+	if (event.type === 9 || event.type === 11) {
+		const key = '' + event.deltaTime + index;
+		const pitch = parseNote(event.data[0]);
+		const noteJSONarray = {
+			note: `:${pitch}`,
+			amp: `${event.data[1]}`,
+			sleep: 'sleep 1',
+			key: `${key}`
+		};
+		noteEvents.push(noteJSONarray);
+	}
+};
+
+const setUpMidiData = (trackdata) => {
+	console.log('Then its:', trackdata);
+	trackdata.event.sort((a,b) => {
+		return a.deltaTime - b.deltaTime;
+	});
+
+	trackdata.event.map((event, index) => (
+		formatAndPushNoteEvent(event, index)
+	));
+	let result = [];
+	for (let object in noteEvents) {
+		result.push(noteEvents[object]);
+	}
+
+	console.log('Finally it is ', result, ' type ', typeof result);
+	noteEvents = result;
+};
+
+NoteReader.prototype.readJSON = function(midiAsJSON, selectedTrack) {
+	console.log('Dis right here:', midiAsJSON);
+	console.log('Track', midiAsJSON.track[selectedTrack]);
+	const first = midiAsJSON.track[selectedTrack];
+	console.log('first its', first);
+	setUpMidiData(midiAsJSON.track[selectedTrack]);
+	this.firstNoteOffset = getOffset() + 1;
+	for (let i = 0; i < noteEvents.length; i++) {
+        console.log(i);
+		handleNote(noteEvents[i], previousNoteEndDeltatime);
 	}
 	console.log('Read done. Offset was', firstNoteOffset);
-	return trie;
+	
 };
 
 function handleNote(note, lastNoteEnd) {
 	absoluteTime = note.deltaTime - firstNoteOffset + 1;
 	const pitch = note.data[0];
 	const amp = note.data[1];
-	// Note end:
+	// A note is ending:
 	if (noteOperationIsEnd(note)) {
 		if (absoluteTime > 0) {
 			console.log('handleNote @ deltatime:', absoluteTime);
 		}
-		// No notes were running: The last seen note end equals current, absolute time.
+		// Determine if parser encounters a break, a chord or a new note
 		if (lastSeenNoteEnd == absoluteTime) {
-			//console.log('END 1:',pitch, amp, absoluteTime - noteStartTimes[pitch], 0, noteStack.length)
+			// No notes were running: The last seen note end equals current, absolute time.
+			//console.log('END 1:',pitch, amp, absoluteTime - noteStartTimes[pitch], 0)
 			// insert(pitch, amp, duration, rest, trie, noteStack)
 			insertToStack(pitch, previousNoteAmplitude, absoluteTime - noteStartDeltaTimes[pitch], 0);
 		} else {
 			// A note was running; this is a chord!
 			noteStartDeltaTimes.splice(parseInt(pitch), 0, 0);
-			// pitch, amp, duration, rest, trie, noteStack)
+			// insert(pitch, amp, duration, rest, trie)
 			insertToStack(pitch, previousNoteAmplitude, absoluteTime - noteStartDeltaTimes[pitch], absoluteTime - lastNoteEnd);
 			previousNoteEndDeltatime = absoluteTime;
 		}
-	} else if (noteOperationIsStart) {
+		// A note is starting: 
+	} else if (noteOperationIsStart) {  
+
 		noteStartDeltaTimes.splice(parseInt(pitch), 0, absoluteTime);
 		previousNoteAmplitude = amp;
 		this.lastSeenNoteStart = absoluteTime;
@@ -89,7 +155,7 @@ function insertToStack(pitch, amp, duration, rest) {
             }`);
 		noteStack.push(contentAsJSON);
 	} else {
-		trie.insert(noteStack);
+		console.log('Full stack: ', noteStack);
 		noteStack.shift();
 	}
 }
@@ -107,8 +173,10 @@ function noteOperationIsEnd(note) {
 }
 
 // First note_on might start after deltatime
-function getOffset(formattedMidi) {
-	for (let i of formattedMidi) {
+function getOffset() {
+	for (let i of noteEvents) {
 		return i.deltaTime;
 	}
 }
+
+export default NoteReader;

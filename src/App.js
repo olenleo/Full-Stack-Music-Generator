@@ -7,6 +7,7 @@ import Button from '@mui/material/Button';
 import TrackList from './components/TrackList';
 import SonicPiFormatter from './utils/SonicPiFormatter';
 import FileUploadForm from './components/FileUploadForm';
+import NoteReader from './utils/NoteReader';
 
 const App = () => {
 
@@ -17,6 +18,8 @@ const App = () => {
 	const [selectedTrack, setSelectedTrack] = useState();
 	const [midiAsJSON, setMidiAsJSON] = useState([]);
 	const [isLoading, setLoading] = useState(true);
+
+	const notereader = new NoteReader();
 
 	useEffect(() => {
 		fileService.getAll().then(files =>
@@ -36,7 +39,7 @@ const App = () => {
 		event.preventDefault();
 		console.log('HandleFileSelection (', title, ')');
 		setSelectedFile(title);
-		setSelectedTrack();
+	
 		fileService.getMidiData(title.name).then(data => setMidiAsJSON(data));
 	};
 
@@ -56,13 +59,13 @@ const App = () => {
 		<div>
 			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
 			<Header/>
+			<Button variant="contained" onClick={()=> notereader.readJSON(midiAsJSON, selectedTrack)}>Trie again!</Button>
 			<FileUploadForm refreshFiles={refreshFileList}/>
 			<FileList uploadedFiles={files} handleClick={handleFileSelection}/>
 			<TrackList midiDataAsJSON={midiAsJSON} handleClick={HandleTrackSelection}/>
-			<SonicPiFormatter track={selectedTrack} trackdata={midiAsJSON}></SonicPiFormatter>
-			<Button variant="contained" onClick={()=> console.log('Generate')}>Trie again!</Button>
 		</div>
 	);
 };
 
+//<SonicPiFormatter track={selectedTrack} trackdata={midiAsJSON}></SonicPiFormatter>
 export default App;
