@@ -25,11 +25,6 @@ let absoluteTime = 0;
 // noteStack recieves a set amount (from 'len' constant) of notes; When full, push onto trie and pop the first note!
 let noteStack = [];
 
-// Track the frequency of each note here.
-let freqArray = [];
-for (let i = 0; i < len; i++) {
-	freqArray.push('');
-}
 
 function NoteReader() {
 	//this.division = division
@@ -70,13 +65,14 @@ const setUpMidiData = (trackdata) => {
 };
 
 NoteReader.prototype.readJSON = function(midiAsJSON, selectedTrack) {
-	console.log('NoteStack:', noteStack);
 	setUpMidiData(midiAsJSON.track[selectedTrack]);
 	for (let i = 0; i < noteEvents.length; i++) {
 		handleNote(noteEvents[i], previousNoteEndDeltatime);
 	}
-    console.log('READ DONE');
-    return trie;
+	console.log('READ DONE');
+    trie.printContent();    
+
+	return trie;
 };
 
 function handleNote(note, lastNoteEnd) {
@@ -114,25 +110,20 @@ function handleNote(note, lastNoteEnd) {
 	return lastSeenNoteEnd;
 }
 /**
- * Insert operation
- * @param {*} pitch: note pitch, integer 1-127
- * @param {*} amp: note amplitude, integer 0-127
- * @param {*} duration: note duration in midi time units, integer > 1. Duration = 0 -> chords
- * @param {*} rest: this is a break, duration in midi time unitis, integer > 1 
+ * Insert a Note object
  */
 function insertToStack(note) {
 	if (noteStack.length < len) {
 		noteStack.push(note);
 	} else {
 		const [first, ...rest] = noteStack;
-		console.log('First, rest: ', first, ' --- ', rest);
 		noteStack = rest;
+        trie.insert(noteStack);
 	}
 }
 
-// ! note_on with amplitude 0 is a note_off !
+// Note_on with amplitude 0 equals anote_off
 function noteOperationIsStart(note) {
-	
 	return note.type == 9 && note.data[1] > 0;
 }
 // Note off commands are expressed by:

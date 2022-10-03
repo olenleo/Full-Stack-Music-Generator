@@ -57,7 +57,7 @@ const App = () => {
 	};
 
 	const handleGenerateButton = () => {
-        event.preventDefault();
+		event.preventDefault();
 		if (midiAsJSON !== undefined && selectedTrack !== undefined) {
 			setTrie(notereader.readJSON(midiAsJSON, selectedTrack));
 		}
@@ -71,9 +71,9 @@ const App = () => {
 			<FileUploadForm refreshFiles={refreshFileList}/>
 			<FileList uploadedFiles={files} handleClick={handleFileSelection}/>
 			<TrackList midiDataAsJSON={midiAsJSON} handleClick={HandleTrackSelection}/>
-            <SonicPiFormatter trackdata={trie}></SonicPiFormatter>
 		</div>
 	);
 };
 
+//<SonicPiFormatter trackdata={trie}></SonicPiFormatter>
 export default App;

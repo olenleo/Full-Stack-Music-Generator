@@ -19,6 +19,8 @@
 | -     |  1    | Frontend utility for mapping MIDI pitch to note, eg. 60 => C5|
 | -     |  1    | Begin frontend utility: parse JSON formatted midi notes. Adapted from previous work on a similar project.|
 | 29.9  |  1.5    | Frontend: Work on parsing notes into a trie |
-| 39.9  |  1.5    | Make test material for midi parsing, work on midi parsing |
+| 30.9  |  1.5    | Make test material for midi parsing, work on midi parsing |
+| 3.10 |  4    | Implement trie data structure, fix array splicing bug |
+
 | :----:|:----- | :-----|
 | SUM   | 32    |                                                                | 
