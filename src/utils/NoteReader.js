@@ -1,5 +1,6 @@
-const { Trie } = require('./Trie');
 /* eslint-disable no-unused-vars */
+const { Trie } = require('./Trie');
+
 // Initialise variables
 let noteEvents = []; 
 const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C'];
@@ -74,6 +75,8 @@ NoteReader.prototype.readJSON = function(midiAsJSON, selectedTrack) {
 	for (let i = 0; i < noteEvents.length; i++) {
 		handleNote(noteEvents[i], previousNoteEndDeltatime);
 	}
+    console.log('READ DONE');
+    return trie;
 };
 
 function handleNote(note, lastNoteEnd) {

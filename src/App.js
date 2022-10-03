@@ -8,6 +8,7 @@ import TrackList from './components/TrackList';
 import SonicPiFormatter from './utils/SonicPiFormatter';
 import FileUploadForm from './components/FileUploadForm';
 import NoteReader from './utils/NoteReader';
+const { Trie } = require('./utils/Trie');
 
 const App = () => {
 
@@ -18,7 +19,7 @@ const App = () => {
 	const [selectedTrack, setSelectedTrack] = useState();
 	const [midiAsJSON, setMidiAsJSON] = useState([]);
 	const [isLoading, setLoading] = useState(true);
-
+	const [trie, setTrie] = useState();
 	const notereader = new NoteReader();
 
 	useEffect(() => {
@@ -55,17 +56,24 @@ const App = () => {
 		);
 	};
 
+	const handleGenerateButton = () => {
+        event.preventDefault();
+		if (midiAsJSON !== undefined && selectedTrack !== undefined) {
+			setTrie(notereader.readJSON(midiAsJSON, selectedTrack));
+		}
+	};
+
 	return (
 		<div>
 			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
 			<Header/>
-			<Button variant="contained" onClick={()=> notereader.readJSON(midiAsJSON, selectedTrack)}>Trie again!</Button>
+			<Button variant="contained" onClick={() => handleGenerateButton()}>Trie again!</Button>
 			<FileUploadForm refreshFiles={refreshFileList}/>
 			<FileList uploadedFiles={files} handleClick={handleFileSelection}/>
 			<TrackList midiDataAsJSON={midiAsJSON} handleClick={HandleTrackSelection}/>
+            <SonicPiFormatter trackdata={trie}></SonicPiFormatter>
 		</div>
 	);
 };
 
-//<SonicPiFormatter track={selectedTrack} trackdata={midiAsJSON}></SonicPiFormatter>
 export default App;
