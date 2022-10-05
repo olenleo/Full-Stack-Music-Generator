@@ -1,12 +1,13 @@
 class Node {
 	constructor(){
-		this.chars = [];
+		this.children = [];
 		this.note = {};
 		this.endOfWord = false;
+		console.log('New node created');
 	}
 
 	getChildren() {
-		return this.chars;
+		return this.children;
 	}
 }
 
@@ -14,28 +15,33 @@ class Trie {
 	constructor(){
 		this.root = new Node();
 	}
-
+	getRoot() {
+		return this.root;
+	}
 	insert(word){
 		console.log('Insert word: ', word);
 		if(!word) return null;
 		let current = this.root;
+		console.log('Current root node children: ',current.children);
 
-		for(let char of word){            
-			// if char does not exist, put an entry
+		for(let child of word){            
+			// if child does not exist, put an entry
 			// use pitch as key
-			if(!current.chars.includes(char.pitch)){
+			const pitch = child.data[0];
+			console.log('child:', child);
+			if(!current.children.includes(pitch)){
 				let newNode = new Node();
-				newNode.note = char;
-				current.chars[char.pitch] = newNode;
+				newNode.note = child;
+				current.children[pitch] = newNode;
 			} else {
-				current.chars[char.pitch].note.freq += 1;
+				current.children[pitch].note.freq += 1;
 			}
 			// get next node for next iteration
-			current = current.chars[char.pitch];
+			current = current.children[child.pitch];
 		}
 		// mark end of the word
 		current.endOfWord = true;
-        console.log('Got to the end :) with a ', current);
+		console.log('Insert done, last child:', current);
 		return current;
 	}
 
@@ -43,11 +49,11 @@ class Trie {
 		if(!word) return false;
 		console.log('Search: ', word);
 		let current = this.root;
-		// visit each character and check it's existence
-		for(let char of word){
-			if(!current.chars.includes(char)) return false;
-			console.log('Found a piece: ', char);
-			current = current.chars.get(char);
+		// visit each child and check it's existence
+		for (let child of word){
+			if(!current.children.includes(child)) return false;
+			console.log('Found a piece: ', child);
+			current = current.children.get(child);
 		}
 		return current.endOfWord;
 	}
@@ -56,9 +62,18 @@ class Trie {
 		console.log(current);
 	}
     
+	printchildren() {
+		let children = '';
+		for (let child in this.root.children) {
+			if (child.note !== undefined) {
+				children += child.note + ' ';
+			}
+		}
+		console.log('All depth 1 children:', children);
+	}
 	printContent() {
 		console.log('Contents:', this.root);
-        this.print(this.root, '', 0);
+		this.print(this.root, '', 0);
         
 	}
 
@@ -66,40 +81,13 @@ class Trie {
 		if (current.endOfWord) {
 			console.log(string);
 		} else {
-            current = this.root;
-			for (let char of current.chars) {
-				this.print(current, string + char, ++depth);
+			current = this.root;
+			for (let child of current.children) {
+				this.print(current, string + child, ++depth);
 			}
 		}   
 	}
 
-	/*
-    def displayUtil(self,visited,node,str):
-        index=0
-        while index<26:
-            if node.children[index]:
-                str+=chr(97+index)
-                #print(2,str)
-                if node.children[index].isEndOfWord == False:
-                    self.displayUtil(visited,node.children[index],str)
-                    str=str[0 : (len(str)-1)]
-                else:
-                    if str not in visited:
-                        visited.append(str)
-                    if self.haschild(node.children[index]):
-                        self.displayUtil(visited,node.children[index],str)
-                        str=str[0 : (len(str)-1)]
-                      
-            index+=1
-      
-    def display(self):
-        visited=[]
-        str=''
-        self.displayUtil(visited,self.root,str)
-        print("Content of Trie:")
-        for i in range(len(visited)):
-            print(visited[i])
-     */
 }
 
 exports.Trie = Trie;

@@ -69,9 +69,6 @@ NoteReader.prototype.readJSON = function(midiAsJSON, selectedTrack) {
 	for (let i = 0; i < noteEvents.length; i++) {
 		handleNote(noteEvents[i], previousNoteEndDeltatime);
 	}
-	console.log('READ DONE');
-    trie.printContent();    
-
 	return trie;
 };
 
@@ -122,14 +119,14 @@ function insertToStack(note) {
 	}
 }
 
-// Note_on with amplitude 0 equals anote_off
+// Note_on with amplitude 0 equals a note_off
 function noteOperationIsStart(note) {
 	return note.type == 9 && note.data[1] > 0;
 }
-// Note off commands are expressed by:
+// Note off commands are expressed by either
 // Midi type 8 : 'note_off'
-// and
-// Note x with amplitude 0
+// or
+// Note_on x with amplitude 0
 function noteOperationIsEnd(note) {
 	return note.type == 8 || (note.data[1] == 0);
 }

@@ -50,9 +50,12 @@ const formatAndPushNoteEvent = (event, index) => {
 
 
 const SonicPiFormatter =( {trackdata, track} ) => {
-	if (trackdata.length === 0 || track === undefined) {
-		return(<div><p>Please select song title and track.</p></div>);
+    console.log('Sonic Pi formatter recieves a TRIE:', trackdata);
+    
+	if (trackdata === undefined) {
+        return(<div><p>Please select song title and track.</p></div>);
 	}
+    trackdata.printChars();
 	noteEvents = [];
 	console.log('Trackdata[', track, ']', trackdata.track[track]);
 	trackdata.track[track].event.sort((a,b) => {
