@@ -9,7 +9,7 @@ import SonicPiFormatter from './utils/SonicPiFormatter';
 import FileUploadForm from './components/FileUploadForm';
 import NoteReader from './utils/NoteReader';
 import generateNoteChain from './utils/MarkovChainGenerator';
-const { Trie } = require('./utils/Trie');
+const { trie2 } = require('./utils/Trie2');
 
 const App = () => {
 
@@ -28,7 +28,7 @@ const App = () => {
 		fileService.getAll().then(files =>
 			setFiles( files ),
 		setLoading(false),
-		setTrie(new Trie())
+		setTrie(new trie2())
 		);
 		
 	}, []);

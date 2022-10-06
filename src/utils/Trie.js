@@ -22,22 +22,20 @@ class Trie {
 		console.log('Insert word: ', word);
 		if(!word) return null;
 		let current = this.root;
-		console.log('Current root node children: ',current.children);
-
-		for(let child of word){            
+		for (let entry of word){            
 			// if child does not exist, put an entry
 			// use pitch as key
-			const pitch = child.data[0];
-			console.log('child:', child);
-			if(!current.children.includes(pitch)){
+			const pitch = entry.data[0];
+			console.log('Current:', current, 'Child:', entry, 'child.children', entry.children);
+			if(!current.children.includes(pitch) || current.children === undefined){
 				let newNode = new Node();
-				newNode.note = child;
+				newNode.note = entry;           
 				current.children[pitch] = newNode;
 			} else {
 				current.children[pitch].note.freq += 1;
 			}
 			// get next node for next iteration
-			current = current.children[child.pitch];
+			current = current.children[entry.pitch];
 		}
 		// mark end of the word
 		current.endOfWord = true;

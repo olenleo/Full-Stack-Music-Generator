@@ -1,5 +1,6 @@
 /* eslint-disable no-unused-vars */
 const { Trie } = require('./Trie');
+const { trie2 } = require('./Trie2');
 
 // Initialise variables
 let noteEvents = []; 
@@ -7,7 +8,9 @@ const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 
 const tresholds = [109,97,85,73,61,49,37,25,13];
 let totalReadNotes = 0;
 
-const trie = new Trie;
+const trie = new trie2;
+console.log('Trie created:', trie);
+console.log('Root: ', trie.root);
 const len = 5; // Length of trie 'word', or rather the length of saved note patterns. TODO: This should arrive from props.
 
 // DeltaTime and 'note on' & 'note off'-related variables
