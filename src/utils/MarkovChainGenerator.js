@@ -16,6 +16,12 @@ function getDouble() {
  */
 function generateNoteChain(root, freqArray, depth) {
 	console.log('GenerateNoteChain recieves', root, freqArray, depth);
+    console.log('Root.children:', root.children);
+	console.log('Root.children:', root.children[31]);
+    for (let key in root.children) {
+        console.log(key);
+    }
+   
 	if (root.endOfWord) {
 		return freqArray;
 	}
@@ -50,10 +56,10 @@ function createTableOfOdds(root) {
 	let odds = Array.apply(null, Array(127)).map(Number.prototype.valueOf,0);
     
 	for (let i = 0; i < 127; i++){
-		console.log(root.children[i]);
-		if (root.children[i] !== undefined) {
-			odds[i] = root.children[i].note.freq;
-			sumOfOdds += root.children[i].note.freq;
+        
+        if (root.children[i] !== undefined) {
+			odds[i] = root.children[i].key.freq;
+			sumOfOdds += root.children[i].key.freq;
 		}
 	}
 	return calculateOdds(odds, sumOfOdds);

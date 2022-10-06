@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // Trie.js - super simple JS implementation
 // https://en.wikipedia.org/wiki/Trie
 
@@ -45,20 +46,33 @@ function trie2() {
 // time complexity: O(k), k = word length
 trie2.prototype.insert = function(word) {
 	let node = this.root; // we start at the root 😬
-    
+	
 	// for every character in the word
 	for(let i = 0; i < word.length; i++) {
+		const pitch = word[i].data[0];
+		const amplitude = word[i].data[1];
+		const contentAsJSON = JSON.parse(
+			`{
+                "pitch" : ${pitch}, 
+                "amp": ${amplitude}, 
+                "freq": 1,
+                "children": []
+            }`);
 		// check to see if character node exists in children.
-		if (!node.children[word[i]]) {
+		if (!node.children[pitch]) {
 			// if it doesn't exist, we then create it.
-			node.children[word[i]] = new TrieNode(word[i]);
+			node.children[pitch] = new TrieNode(contentAsJSON);
         
 			// we also assign the parent to the child node.
-			node.children[word[i]].parent = node;
-		}
+			node.children[pitch].parent = node;
+		} else {
+            // increase freq by one!
+            
+        }
       
 		// proceed to the next depth in the trie.
-		node = node.children[word[i]];
+		node = node.children[pitch];
+		console.log('Node now ', node);
       
 		// finally, we check to see if it's the last word.
 		if (i == word.length-1) {
@@ -66,7 +80,8 @@ trie2.prototype.insert = function(word) {
 			node.end = true;
 		}
 	}
-	console.log('Insert word:', word, this.contains(word));
+	console.log('Insert word:', word);
+    
 };
   
 // check if it contains a whole word.

@@ -64,8 +64,10 @@ const App = () => {
 		let arr = [];
 		setFreqArray(arr);
 		if (midiAsJSON !== undefined && selectedTrack !== undefined) {
-			setTrie(notereader.readJSON(midiAsJSON, selectedTrack));
-			const result = generateNoteChain(trie.root, freqArray,0);
+            const theTrie = notereader.readJSON(midiAsJSON, selectedTrack);
+			
+            console.log('Trie root in app', theTrie.root);
+			const result = generateNoteChain(theTrie.root, freqArray,0);
 			console.log('Result', result);
 		}
 	};
