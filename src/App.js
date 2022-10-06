@@ -22,6 +22,7 @@ const App = () => {
 	const [isLoading, setLoading] = useState(true);
 	const [trie, setTrie] = useState();
 	const [freqArray, setFreqArray] = useState();
+    const [result, setResult] = useState();
 	const notereader = new NoteReader();
 
 	useEffect(() => {
@@ -61,14 +62,12 @@ const App = () => {
 
 	const handleGenerateButton = () => {
 		event.preventDefault();
-		let arr = [];
+        let arr = Array.apply(null, Array(127));
 		setFreqArray(arr);
 		if (midiAsJSON !== undefined && selectedTrack !== undefined) {
             const theTrie = notereader.readJSON(midiAsJSON, selectedTrack);
+			setResult(generateNoteChain(theTrie.root, freqArray,0));
 			
-            console.log('Trie root in app', theTrie.root);
-			const result = generateNoteChain(theTrie.root, freqArray,0);
-			console.log('Result', result);
 		}
 	};
 	return (
@@ -76,6 +75,7 @@ const App = () => {
 			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
 			<Header/>
 			<Button variant="contained" onClick={() => handleGenerateButton()}>Trie again!</Button>
+            <p>{result}</p>
 			<FileUploadForm refreshFiles={refreshFileList}/>
 			<FileList uploadedFiles={files} handleClick={handleFileSelection}/>
 			<TrackList midiDataAsJSON={midiAsJSON} handleClick={HandleTrackSelection}/>

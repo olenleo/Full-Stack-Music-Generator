@@ -1,6 +1,8 @@
 // Necessary variables for midi manipulation
 // TODO: place these into notereader..?
 
+
+
 let sumOfOdds = 0;
 
 
@@ -14,34 +16,31 @@ function getDouble() {
  * @param {*} freqArray Array 1-127 containing frequency of note occurences
  * @param {*} depth Current depth in trie
  */
+
 function generateNoteChain(root, freqArray, depth) {
 	console.log('GenerateNoteChain recieves', root, freqArray, depth);
     console.log('Root.children:', root.children);
 	console.log('Root.children:', root.children[31]);
-    for (let key in root.children) {
-        console.log(key);
-    }
-   
+    let table = createTableOfOdds(root);
 	if (root.endOfWord) {
 		return freqArray;
 	}
 
 	num = getDouble();
-	let table = createTableOfOdds(root);
 	console.log('Table of Odds: ', table);
 	for (let i = 0; i < 127; i++) {
 		if (num <= table[i] && table[i] > 0) {
 			console.log('From tableOfOdds:', table[i]);
-			let noteDuration = Math.round(root.children[i].note.duration / 480 * 100.0) / 100.0;
-			let timeToNextNote = root.children[i].note.rest;
+			//let noteDuration = Math.round(root.children[i].note.duration / 480 * 100.0) / 100.0;
+			//let timeToNextNote = root.children[i].note.rest;
 			// TODO: Format note here instead?
 			const contentAsJSON = JSON.parse(
 				`{
                     "pitch" : ${i}, 
-                    "amp": ${root.children[i].note.amp}, 
-                    "duration": ${noteDuration},
-                    "rest": ${timeToNextNote},
-                    "freq": 1,
+                    "amp": ${root.children[i].key.amp}, 
+                    "duration": 1,
+                    "rest": 1,
+                    "freq": ${root.children[i].key.freq},
                     "children": []
                 }`);
 			freqArray[depth] = contentAsJSON;
