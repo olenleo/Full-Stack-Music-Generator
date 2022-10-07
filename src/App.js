@@ -10,7 +10,7 @@ import FileUploadForm from './components/FileUploadForm';
 import NoteReader from './utils/NoteReader';
 import generateNoteChain from './utils/MarkovChainGenerator';
 const { trie2 } = require('./utils/Trie2');
-
+import Grid from '@mui/material/Grid';
 const App = () => {
 
 	const [files, setFiles] = useState([]);
@@ -64,9 +64,9 @@ const App = () => {
 		let arr = [];
 		setFreqArray(arr);
 		if (midiAsJSON !== undefined && selectedTrack !== undefined) {
-            const theTrie = notereader.readJSON(midiAsJSON, selectedTrack);
+			const theTrie = notereader.readJSON(midiAsJSON, selectedTrack);
 			
-            console.log('Trie root in app', theTrie.root);
+			console.log('Trie root in app', theTrie.root);
 			const result = generateNoteChain(theTrie.root, freqArray,0);
 			console.log('Result', result);
 		}
@@ -75,14 +75,21 @@ const App = () => {
 		<div>
 			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
 			<Header/>
-			<Button variant="contained" onClick={() => handleGenerateButton()}>Trie again!</Button>
 			<FileUploadForm refreshFiles={refreshFileList}/>
-			<FileList uploadedFiles={files} handleClick={handleFileSelection}/>
-			<TrackList midiDataAsJSON={midiAsJSON} handleClick={HandleTrackSelection}/>
-			
+			<Button variant="contained" onClick={() => handleGenerateButton()}>Trie again!</Button>
+			<Grid container spacing={2}>
+				<Grid item xs={4}>
+					<FileList uploadedFiles={files} handleClick={handleFileSelection}/>
+				</Grid>
+				<Grid item xs={4}>
+					<TrackList midiDataAsJSON={midiAsJSON} handleClick={HandleTrackSelection}/>
+				</Grid>
+				<Grid item xs={4}>
+					<h3>Manage results here</h3>
+				</Grid>
+			</Grid>
 		</div>
 	);
 };
 
-//
 export default App;

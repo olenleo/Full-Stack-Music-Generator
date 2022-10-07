@@ -22,6 +22,7 @@
 | 30.9  |  1.5  | Make test material for midi parsing, work on midi parsing                                                                             |
 | 3.10  |  4.5  | Implement trie data structure, fix array splicing bug                                                                                 |
 | 5.10  | 3.5   | Start implementing markov chain generation.Adapted from previous work on a similar project.                                           | 
-| 6.10  | 2   |  Re-implementing trie; I had several JSON-related bugs. | 
+| 6.10  | 2     |  Re-implementing trie; I had several JSON-related bugs. | 
+| 7.10  | 1.5     |  Further work on markov chain generation, update MaterialUI frontend | 
 | :----:|:----- | :-----                                                                                                                                |
-| SUM   | 42    |                                                                                           |           
+| SUM   | 43.5    |                                                                                           |           
