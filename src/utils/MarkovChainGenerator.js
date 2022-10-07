@@ -6,11 +6,10 @@
 let sumOfOdds = 0;
 
 
-let num = 0.5;
+let num = 0.05;
 function getDouble() {
-	return num;
-}
-/**
+	return Math.random();
+}/**
  * Generate new words according to frequency of letters
  * @param {*} root Root node in Trie
  * @param {*} freqArray Array 1-127 containing frequency of note occurences
@@ -19,21 +18,32 @@ function getDouble() {
 
 function generateNoteChain(root, freqArray, depth) {
 	console.log('GenerateNoteChain recieves', root, freqArray, depth);
-    console.log('Root.children:', root.children);
-	console.log('Root.children:', root.children[31]);
-    let table = createTableOfOdds(root);
-	if (root.endOfWord) {
+	console.log('Children:', root.children);
+	let table = createTableOfOdds(root);
+
+	if (root.end) {
+		console.log('$$$', freqArray);
 		return freqArray;
 	}
 
 	num = getDouble();
-	console.log('Table of Odds: ', table);
 	for (let i = 0; i < 127; i++) {
 		if (num <= table[i] && table[i] > 0) {
-			console.log('From tableOfOdds:', table[i]);
 			//let noteDuration = Math.round(root.children[i].note.duration / 480 * 100.0) / 100.0;
 			//let timeToNextNote = root.children[i].note.rest;
-			// TODO: Format note here instead?
+			const contentAsJSON = JSON.parse(
+				`{
+                    "pitch" : ${i}, 
+                    "amp": ${root.children[i].key.amp}, 
+                    "duration": 1,
+                    "rest": 1,
+                    "freq": ${root.children[i].key.freq},
+                    "children": []
+                }`);
+			freqArray[depth] = contentAsJSON;
+			return generateNoteChain(root.children[i], freqArray, depth + 1);
+		}
+		if (num > table[i] && table[i] > 0) {
 			const contentAsJSON = JSON.parse(
 				`{
                     "pitch" : ${i}, 
@@ -56,7 +66,7 @@ function createTableOfOdds(root) {
     
 	for (let i = 0; i < 127; i++){
         
-        if (root.children[i] !== undefined) {
+		if (root.children[i] !== undefined) {
 			odds[i] = root.children[i].key.freq;
 			sumOfOdds += root.children[i].key.freq;
 		}

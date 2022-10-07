@@ -68,17 +68,17 @@ trie2.prototype.insert = function(word) {
 			// we also assign the parent to the child node.
 			node.children[pitch].parent = node;
 		} else {
-            // increase freq by one!
-            node.children[pitch].freq += 1;
-        }
+			// increase freq by one!
+			node.children[pitch].freq += 1;
+		}
       
 		// proceed to the next depth in the trie.
 		node = node.children[pitch];
-		console.log('Node now ', node);
       
 		// finally, we check to see if it's the last word.
 		if (i == word.length-1) {
 			// if it is, we set the end flag to true.
+            console.log('END');
 			node.end = true;
 		}
 	}
