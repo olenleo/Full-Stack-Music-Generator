@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 
 import * as React from 'react';
+import uniqid from 'uniqid';
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
@@ -23,7 +24,7 @@ const TrackList = ( { midiDataAsJSON, handleClick }) => {
 				<h3>Available MIDI tracks</h3>
 				<Box>
 					{trackInfo.map((track, index) => 
-						<List key ={index}>
+						<List key ={uniqid('index-', index)}>
 							<Divider />
 							<ListItem disablePadding>
 								<ListItemButton onClick={()=> {handleClick(index);}}>

@@ -8,6 +8,7 @@
 
 import React from 'react';
 import Note from '../components/Note';
+import uniqid from 'uniqid';
 
 let noteEvents = [];
 const notes = ['C', 'C#', 'D', 'D#', 'E', 'F', 'F#', 'G', 'G#', 'A', 'A#', 'B', 'C'];
@@ -34,47 +35,43 @@ const parseOctave = (note) => {
 	}
 };
 
-const formatAndPushNoteEvent = (event, index) => {
-	if (event.type === 9 || event.type === 11) {
-		const key = '' + event.deltaTime + index;
-		const pitch = parseNote(event.data[0]);
-		const noteJSONarray = {
-			note: `:${pitch}`,
-			amp: `${event.data[1]}`,
-			sleep: 'sleep 1',
-			key: `${key}`
+const formatAndPushNoteEvent = (item, index) => {
+	console.log('item:', item, index);
+	item.forEach(note => {
+		const pitch = parseNote(note.pitch);
+		const key = uniqid('index-', index);
+		const noteAsJSON = {
+			'pitch' : `${pitch}`,
+			'amp' : `${note.amp}`,
+			'key' : `${key}`
 		};
-		noteEvents.push(noteJSONarray);
-	}
+        
+		noteEvents.push(noteAsJSON);
+	});
+    
 };
 
 
-const SonicPiFormatter =( {trackdata, track} ) => {
-    console.log('Sonic Pi formatter recieves a TRIE:', trackdata);
+const SonicPiFormatter =( {result} ) => {
+	console.log('Sonic Pi formatter recieves an array:', result);
     
-	if (trackdata === undefined) {
-        return(<div><p>Please select song title and track.</p></div>);
+	if (result === undefined) {
+		return(<div><p>Please select song title and track.</p></div>);
 	}
-    trackdata.printChars();
 	noteEvents = [];
-	console.log('Trackdata[', track, ']', trackdata.track[track]);
-	trackdata.track[track].event.sort((a,b) => {
-		return a.deltaTime - b.deltaTime;
-	});
-
-	trackdata.track[track].event.map((event, index) => (
-		formatAndPushNoteEvent(event, index)
+	result.map((item, index) => (
+		formatAndPushNoteEvent(item, index)
 	));
 	
 	return (
 		<div>
-			<h1>Sonic Pi formatter here</h1>
+			
 			<code>
 				{noteEvents.map(noteJSONarray => (
-					<Note key = {noteJSONarray.key} note={noteJSONarray.note} amplitude={noteJSONarray.amp}></Note>
+					<Note key = {noteJSONarray.key} note={noteJSONarray.pitch} amplitude={noteJSONarray.amp}></Note>
 				))}
 			</code>            
-			<h1>End Sonic Pi formatter</h1>
+			
 		</div>
 	);
 	

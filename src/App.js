@@ -21,7 +21,6 @@ const App = () => {
 	const [midiAsJSON, setMidiAsJSON] = useState([]);
 	const [isLoading, setLoading] = useState(true);
 	const [trie, setTrie] = useState();
-	const [freqArray, setFreqArray] = useState();
 	const [result, setResult] = useState([]);
 	const notereader = new NoteReader();
 
@@ -60,22 +59,26 @@ const App = () => {
 		);
 	};
 
+	const generateResult = ( amount, trie ) => {
+		let arr = [];
+		const freqArray = Array.apply(null, Array(5));
+		for (let i = 0; i < amount; i++) {
+			arr.push(generateNoteChain(trie.root, freqArray, 0));
+		}
+        console.log('Arr', arr);
+		setResult(arr);
+        
+	};
+
 	const handleGenerateButton = () => {
 		event.preventDefault();
 		if (midiAsJSON !== undefined && selectedTrack !== undefined) {
 			const theTrie = notereader.readJSON(midiAsJSON, selectedTrack);
-            const res = []; 
-			for (let i = 0; i < 5; i++) {
-				console.log(i, ' F F S');
-				let arr = Array.apply(null, Array(5));
-				setFreqArray(arr);
-				res.push(generateNoteChain(theTrie.root, freqArray,0));
-				console.log('Res:', res);
-			}
-            setResult(res);
-			console.log('Result', result);
+			generateResult(4,theTrie);
 		}
+        console.log('Result state', result);
 	};
+ 
 	return (
 		<div>
 			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
@@ -90,7 +93,8 @@ const App = () => {
 					<TrackList midiDataAsJSON={midiAsJSON} handleClick={HandleTrackSelection}/>
 				</Grid>
 				<Grid item xs={4}>
-					<h3>Manage results here</h3>
+					<h3>Resulting track:</h3>
+					<SonicPiFormatter result={result}/>
 				</Grid>
 			</Grid>
 		</div>

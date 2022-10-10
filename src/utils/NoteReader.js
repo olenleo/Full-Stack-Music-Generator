@@ -113,7 +113,7 @@ function handleNote(note, lastNoteEnd) {
  * Insert a Note object
  */
 function insertToStack(note) {
-	if (noteStack.length < len) {
+	if (noteStack.length <= len) {
 		noteStack.push(note);
 	} else {
 		const [first, ...rest] = noteStack;

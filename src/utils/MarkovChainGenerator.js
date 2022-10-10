@@ -30,6 +30,7 @@ function generateNoteChain(root, freqArray, depth) {
 		if (num <= table[i] && table[i] > 0) {
 			//let noteDuration = Math.round(root.children[i].note.duration / 480 * 100.0) / 100.0;
 			//let timeToNextNote = root.children[i].note.rest;
+            console.log('root', root);
 			const contentAsJSON = JSON.parse(
 				`{
                     "pitch" : ${i}, 
@@ -62,9 +63,7 @@ function generateNoteChain(root, freqArray, depth) {
 function createTableOfOdds(root) {
 	// Generate empty array
 	let odds = Array.apply(null, Array(127)).map(Number.prototype.valueOf,0);
-    
 	for (let i = 0; i < 127; i++){
-        
 		if (root.children[i] !== undefined) {
 			odds[i] = root.children[i].key.freq;
 			sumOfOdds += root.children[i].key.freq;
