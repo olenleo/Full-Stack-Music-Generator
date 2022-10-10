@@ -22,7 +22,6 @@ function generateNoteChain(root, freqArray, depth) {
 	let table = createTableOfOdds(root);
 
 	if (root.end) {
-		console.log('$$$', freqArray);
 		return freqArray;
 	}
 

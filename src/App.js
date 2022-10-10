@@ -22,7 +22,7 @@ const App = () => {
 	const [isLoading, setLoading] = useState(true);
 	const [trie, setTrie] = useState();
 	const [freqArray, setFreqArray] = useState();
-	const [result, setResult] = useState();
+	const [result, setResult] = useState([]);
 	const notereader = new NoteReader();
 
 	useEffect(() => {
@@ -62,13 +62,17 @@ const App = () => {
 
 	const handleGenerateButton = () => {
 		event.preventDefault();
-		let arr = Array.apply(null, Array(127));
-		setFreqArray(arr);
 		if (midiAsJSON !== undefined && selectedTrack !== undefined) {
 			const theTrie = notereader.readJSON(midiAsJSON, selectedTrack);
-			
-			console.log('Trie root in app', theTrie.root);
-			const result = generateNoteChain(theTrie.root, freqArray,0);
+            const res = []; 
+			for (let i = 0; i < 5; i++) {
+				console.log(i, ' F F S');
+				let arr = Array.apply(null, Array(5));
+				setFreqArray(arr);
+				res.push(generateNoteChain(theTrie.root, freqArray,0));
+				console.log('Res:', res);
+			}
+            setResult(res);
 			console.log('Result', result);
 		}
 	};

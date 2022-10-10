@@ -78,12 +78,9 @@ trie2.prototype.insert = function(word) {
 		// finally, we check to see if it's the last word.
 		if (i == word.length-1) {
 			// if it is, we set the end flag to true.
-            console.log('END');
 			node.end = true;
 		}
 	}
-	console.log('Insert word:', word);
-    
 };
   
 // check if it contains a whole word.
