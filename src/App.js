@@ -57,21 +57,17 @@ const App = () => {
 		);
 	};
 
-	const generateResult = ( amount, trie ) => {
-		let arr = [];
-		let generated = null;
+	const generateResult = async ( amount, trie ) => {
+        let clone = [...result];
 		for (let i = 0; i < amount; i++) {
-			generated = generateNoteChain(trie.root, Array.apply(null, Array(5)), 0);
-			console.log('Attempt ', i, ' : ', generated);
-			arr.push(generated);
+            clone.push(generateNoteChain(trie.root, Array.apply(null, Array(5)), 0));
 		}
-		setResult(arr);
-        
+        console.log('RESULT:', result);
+        setResult(clone);
 	};
 
-	const handleGenerateButton = () => {
-		event.preventDefault();
-		setResult([]);
+	const handleGenerateButton = async (e) => {
+		setResult([], () => {console.log('Result is empty', result.length === 0);});
 		if (midiAsJSON !== undefined && selectedTrack !== undefined) {
 			const theTrie = notereader.readJSON(midiAsJSON, selectedTrack);
 			generateResult(4,theTrie);

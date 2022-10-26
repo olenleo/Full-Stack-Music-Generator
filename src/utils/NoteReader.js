@@ -1,5 +1,4 @@
 /* eslint-disable no-unused-vars */
-const { Trie } = require('./Trie');
 const { trie2 } = require('./Trie2');
 
 // Initialise variables
@@ -9,7 +8,7 @@ const tresholds = [109,97,85,73,61,49,37,25,13];
 let totalReadNotes = 0;
 
 const trie = new trie2;
-const len = 10; // Length of trie 'word', or rather the length of saved note patterns. TODO: This should arrive from props.
+const len = 5; // Length of trie 'word', or rather the length of saved note patterns. TODO: This should arrive from props.
 
 // DeltaTime and 'note on' & 'note off'-related variables
 // We need to track when notes start and end for rhythm and chords.
@@ -101,7 +100,7 @@ function noteOperationIsStart(note) {
 // or
 // Note_on x with amplitude 0
 function noteOperationIsEnd(note) {
-	return note.type == 8 || (note.data[1] == 0);
+	return note.type == 8 || note.data[1] == 0;
 }
 
 export default NoteReader;
