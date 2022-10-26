@@ -25,5 +25,7 @@
 | 6.10  | 2     | Re-implementing trie; I had several JSON-related bugs.                                                   | 
 | 7.10  | 1.5   | Further work on markov chain generation, update MaterialUI frontend                                      |
 | 10.10 | 1.5   | Intermediary; Generated notechain display component                                                      |
+| 11.10 | 1     | Work on CalculateOdds method                                                                             |
+| 26.10 | 1.5   | Work on markov chain generation                                                                          |
 | :----:|:----- |:-----                                                                                                    |
 | SUM   | 43.5    |                                                                                                        |

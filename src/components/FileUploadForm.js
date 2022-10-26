@@ -22,7 +22,6 @@ const FileUploadForm = ( {refreshFiles}) => {
 	const handleFileSelect = ( event ) => {
 		event.preventDefault();
 		setSelectedFile(event.target.files[0]);
-		console.log('Selected file:', selectedFile);
 	};
 
 	return (

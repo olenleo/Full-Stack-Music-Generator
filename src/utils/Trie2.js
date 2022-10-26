@@ -17,6 +17,9 @@ function TrieNode(key) {
 	// we have hash of children
 	this.children = {};
     
+	// the Node contains note information in JSON
+	this.contentAsJSON = null;
+
 	// check to see if the node is at the end
 	this.end = false;
 }
@@ -47,29 +50,31 @@ function trie2() {
 
 // TODO: Check that this inserts properly a trie.
 trie2.prototype.insert = function(word) {
-	let node = this.root; // we start at the root 😬
+	let node = this.root; // we start at the root.
 	
 	// for every character in the word
 	for(let i = 0; i < word.length; i++) {
 		const pitch = word[i].data[0];
 		const amplitude = word[i].data[1];
-		const contentAsJSON = JSON.parse(
-			`{
-                "pitch" : ${pitch}, 
-                "amp": ${amplitude}, 
-                "freq": 1,
-                "children": []
-            }`);
 		// check to see if character node exists in children.
 		if (!node.children[pitch]) {
 			// if it doesn't exist, we then create it.
-			node.children[pitch] = new TrieNode(contentAsJSON);
+			const noteInformationAsJSON = JSON.parse(
+				`{
+                    "pitch" : ${pitch}, 
+                    "amp": ${amplitude}, 
+                    "freq": ${1},
+                    "children": []
+                }`);
+            
+			node.children[pitch] = new TrieNode(word[i]);
+			node.children[pitch].contentAsJSON = noteInformationAsJSON;
         
 			// we also assign the parent to the child node.
 			node.children[pitch].parent = node;
 		} else {
 			// increase freq by one!
-			node.children[pitch].freq += 1;
+			node.children[pitch].contentAsJSON.freq = node.children[pitch].contentAsJSON.freq + 1;
 		}
       
 		// proceed to the next depth in the trie.

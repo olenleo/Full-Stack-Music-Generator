@@ -29,10 +29,10 @@ function generateNoteChain(root, freqArray, depth) {
 			const contentAsJSON = JSON.parse(
 				`{
                     "pitch" : ${i}, 
-                    "amp": ${root.children[i].key.amp}, 
+                    "amp": ${root.children[i].contentAsJSON.amp}, 
                     "duration": 1,
                     "rest": 1,
-                    "freq": ${root.children[i].key.freq},
+                    "freq": ${root.children[i].contentAsJSON.freq},
                     "children": []
                 }`);
 			freqArray[depth] = contentAsJSON;
@@ -42,10 +42,10 @@ function generateNoteChain(root, freqArray, depth) {
 			const contentAsJSON = JSON.parse(
 				`{
                     "pitch" : ${i}, 
-                    "amp": ${root.children[i].key.amp}, 
+                    "amp": ${root.children[i].contentAsJSON.amp}, 
                     "duration": 1,
                     "rest": 1,
-                    "freq": ${root.children[i].key.freq},
+                    "freq": ${root.children[i].contentAsJSON.freq},
                     "children": []
                 }`);
 			freqArray[depth] = contentAsJSON;
@@ -58,14 +58,13 @@ function generateNoteChain(root, freqArray, depth) {
 function createTableOfOdds(root) {
 	// Generate empty array
 	let odds = Array.apply(null, Array(127)).map(Number.prototype.valueOf,0);
-    sumOfOdds = 0;
+	sumOfOdds = 0;
 	for (let i = 0; i < 127; i++){
 		if (root.children[i] !== undefined) {
-			odds[i] = root.children[i].key.freq;
-			sumOfOdds += root.children[i].key.freq;
+			odds[i] = root.children[i].contentAsJSON.freq;
+			sumOfOdds += root.children[i].contentAsJSON.freq;
 		}
 	}
-    
 	return calculateOdds(odds, sumOfOdds);
 }
 
@@ -79,7 +78,6 @@ function calculateOdds(table, sum) {
 			previous = table[i];
 		}
 	}
-	console.log('odds table after', table);
 	return table;
 }
 

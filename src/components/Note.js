@@ -4,7 +4,7 @@ const Note = ({ note, amplitude}) => {
 
 	return (
 		<div>
-			<p>play {note}, amp: {amplitude/100}</p>
+			<p>play :{note}, amp: {amplitude}</p>
 			<p>sleep 1</p>
 		</div>
 	);

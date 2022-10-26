@@ -41,14 +41,12 @@ const App = () => {
 
 	const handleFileSelection = async (title) => {
 		event.preventDefault();
-		console.log('HandleFileSelection (', title, ')');
 		setSelectedFile(title);
 	
 		fileService.getMidiData(title.name).then(data => setMidiAsJSON(data));
 	};
 
 	const HandleTrackSelection =  (track) => {
-		console.log('Handle track selection', track);
 		setSelectedTrack(track);
 	};
 
@@ -61,22 +59,23 @@ const App = () => {
 
 	const generateResult = ( amount, trie ) => {
 		let arr = [];
-		const freqArray = Array.apply(null, Array(5));
+		let generated = null;
 		for (let i = 0; i < amount; i++) {
-			arr.push(generateNoteChain(trie.root, freqArray, 0));
+			generated = generateNoteChain(trie.root, Array.apply(null, Array(5)), 0);
+			console.log('Attempt ', i, ' : ', generated);
+			arr.push(generated);
 		}
-        console.log('Arr', arr);
 		setResult(arr);
         
 	};
 
 	const handleGenerateButton = () => {
 		event.preventDefault();
+		setResult([]);
 		if (midiAsJSON !== undefined && selectedTrack !== undefined) {
 			const theTrie = notereader.readJSON(midiAsJSON, selectedTrack);
 			generateResult(4,theTrie);
 		}
-        console.log('Result state', result);
 	};
  
 	return (

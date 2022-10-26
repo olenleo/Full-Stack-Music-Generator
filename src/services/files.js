@@ -14,7 +14,6 @@ const getAll = () => {
 };
 
 const getMidiData = ( filename ) => {
-	console.log('getMidiData(',filename,')');
 	const request = axios.get(baseUrl + 'get/' + filename);
 	return request.then(response => response.data);
 };

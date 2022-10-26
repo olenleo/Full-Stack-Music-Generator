@@ -2,7 +2,6 @@
 import React from 'react';
 
 const JSONmidiParser = ({midiData, title, track}) => {
-	console.log('Hi, parsing track', track);
 	if (midiData.length === 0) {
 		return (
 			<div>
