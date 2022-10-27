@@ -11,6 +11,10 @@ import FileUploadForm from './components/FileUploadForm';
 const { trie2 } = require('./utils/Trie2');
 import Grid from '@mui/material/Grid';
 import GenerateControls from './components/GenerateControls';
+import NoteReader from './utils/NoteReader';
+import {generateNoteChain, printTrie} from './utils/MarkovChainGenerator';
+
+
 const App = () => {
 
 	const [files, setFiles] = useState([]);
@@ -20,15 +24,14 @@ const App = () => {
 	const [selectedTrack, setSelectedTrack] = useState();
 	const [midiAsJSON, setMidiAsJSON] = useState([]);
 	const [isLoading, setLoading] = useState(true);
-	const [trie, setTrie] = useState();
 	const [result, setResult] = useState([]);
-	
-
+	const notereader = new NoteReader();    
+    
 	useEffect(() => {
+		setResult([]);
 		fileService.getAll().then(files =>
 			setFiles( files ),
-		setLoading(false),
-		setTrie(new trie2())
+		setLoading(false)
 		);
 		
 	}, []);
@@ -40,7 +43,7 @@ const App = () => {
 	}
 
 	const handleFileSelection = async (title) => {
-		event.preventDefault();
+		
 		setSelectedFile(title);
 	
 		fileService.getMidiData(title.name).then(data => setMidiAsJSON(data));
@@ -57,8 +60,29 @@ const App = () => {
 		);
 	};
 
-	const handleClear = ({ setResult, result }) => {
-        console.log('Before', result);
+	const generate = async ( amount ) => {
+		const arr  = [];
+		let theTrie = notereader.readJSON(midiAsJSON, selectedTrack);
+        const printarr = Array.apply(null, Array(5));
+        console.log('Print shit\n',  printTrie(theTrie.root, printarr, 0));
+		let chain;
+		for (let i = 0; i < amount; i++) {
+			if (midiAsJSON !== undefined && selectedTrack !== undefined) {
+				chain = generateNoteChain(theTrie.root, Array.apply(null, Array(5)), 0);
+				arr.push(chain);
+			}
+		}
+		console.log('arr, ', arr, arr.length);
+		setResult(arr);
+	};
+
+	const handleGenerateButton =  async () => {
+        handleClear({setResult, result});
+		generate(3);
+	};
+
+	const handleClear = async ({ setResult, result }) => {
+		console.log('Before', result);
 		setResult([]);
 		console.log('After', result);
 	};
@@ -69,8 +93,8 @@ const App = () => {
 			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
 			<Header/>
 			<FileUploadForm refreshFiles={refreshFileList}/>
-			<GenerateControls amount={5} result={result} setResult={setResult} midiAsJSON={midiAsJSON} selectedTrack={selectedTrack}/>
-			<Button variant="contained" onClick={() => handleClear({ setResult})}>Clear result</Button>
+			<GenerateControls handleClick={() => handleGenerateButton()}/>
+			<Button variant="contained" onClick={() => handleClear({ setResult })}>Clear result</Button>
 			<Grid container spacing={2}>
 				<Grid item xs={4}>
 					<FileList uploadedFiles={files} handleClick={handleFileSelection}/>

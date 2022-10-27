@@ -62,16 +62,13 @@ const SonicPiFormatter =( {result} ) => {
 	
 	return (
 		<div>
-			
 			<code>
 				{noteEvents.map(noteJSONarray => (
 					<Note key = {noteJSONarray.key} note={noteJSONarray.pitch} amplitude={noteJSONarray.amp}></Note>
 				))}
 			</code>            
-			
 		</div>
 	);
-	
 };
 
 export default SonicPiFormatter;

@@ -1,12 +1,28 @@
 // Necessary variables for midi manipulation
 
-let num = 0.05;
 let tableOfOdds = [];
 let sumOfOdds = 0;
-
+let num = getDouble();
 function getDouble() {
 	return  Math.random();
 }
+
+
+function printTrie(root, freqArray, depth) {
+    
+	if (root.end) {
+		console.log(freqArray);
+	}
+    
+	for (let i = 0; i < 127; i++) {
+        
+		if (root.children[i] != undefined) {
+			freqArray[depth] = i;
+			printTrie(root.children[i], freqArray, depth + 1);
+		}
+	}
+}
+
 
 /**
  * Generate a new note sequence from frequency of notes in trie
@@ -15,19 +31,26 @@ function getDouble() {
  * @param {*} depth Current depth in trie
  */
 function generateNoteChain(root, freqArray, depth) {
+	console.log('GENERATE NOTE CHAIN:');
 	if (root.end) {
+		console.log('end:', freqArray);
 		return freqArray;
 	}
-	num = getDouble();
+	
+
 	sumOfOdds = 0; 
 	createTableOfOdds(root);
 	calculateOdds();
-	console.log('Table of odds: ', tableOfOdds);
-	for (let i = 0; i < 127; i++) {
+	num = getDouble();
+    if (depth === 0) {
+        console.log('Num:', num);
+        console.log('Table of odds:', tableOfOdds);
+    }
+	for (let i = 0; i < tableOfOdds.length; i++) {
 		if (num <= tableOfOdds[i] && tableOfOdds[i] > 0) {
 			//let noteDuration = Math.round(root.children[i].note.duration / 480 * 100.0) / 100.0;
 			//let timeToNextNote = root.children[i].note.rest;
-
+            console.log('Insert ', i);
 			const contentAsJSON = JSON.parse(
 				`{
                     "pitch" : ${i}, 
@@ -39,22 +62,10 @@ function generateNoteChain(root, freqArray, depth) {
                 }`);
 			freqArray[depth] = contentAsJSON;
 			num = getDouble();
+			console.log('Numbers do change', num);
 			return generateNoteChain(root.children[i], freqArray, depth + 1);
 		}
-		if (num > tableOfOdds[i] && tableOfOdds[i] > 0) {
-			const contentAsJSON = JSON.parse(
-				`{
-                    "pitch" : ${i}, 
-                    "amp": ${root.children[i].contentAsJSON.amp}, 
-                    "duration": 1,
-                    "rest": 1,
-                    "freq": ${root.children[i].contentAsJSON.freq},
-                    "children": []
-                }`);
-			freqArray[depth] = contentAsJSON;
-			num = getDouble();
-			return generateNoteChain(root.children[i], freqArray, depth + 1);
-		}
+	
 	}
 }
 
@@ -83,6 +94,6 @@ function calculateOdds() {
 }
 
 
-export default generateNoteChain;
+export {generateNoteChain, printTrie};
 
 

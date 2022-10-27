@@ -27,5 +27,6 @@
 | 10.10 | 1.5   | Intermediary; Generated notechain display component                                                      |
 | 11.10 | 1     | Work on CalculateOdds method                                                                             |
 | 26.10 | 4.5   | Work on markov chain generation                                                                          |
+| 27.10 | 8.45 -> 11.30, 12-13 |                                                                                                        |
 | :----:|:----- |:-----                                                                                                    |
 | SUM   | 54    |                                                                                                        |
