@@ -5,7 +5,7 @@ let tableOfOdds = [];
 let sumOfOdds = 0;
 
 function getDouble() {
-    return  Math.random();
+	return  Math.random();
 }
 
 /**
@@ -22,7 +22,7 @@ function generateNoteChain(root, freqArray, depth) {
 	sumOfOdds = 0; 
 	createTableOfOdds(root);
 	calculateOdds();
-    console.log('Table of odds: ', tableOfOdds);
+	console.log('Table of odds: ', tableOfOdds);
 	for (let i = 0; i < 127; i++) {
 		if (num <= tableOfOdds[i] && tableOfOdds[i] > 0) {
 			//let noteDuration = Math.round(root.children[i].note.duration / 480 * 100.0) / 100.0;

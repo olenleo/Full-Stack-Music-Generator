@@ -7,10 +7,10 @@ import Button from '@mui/material/Button';
 import TrackList from './components/TrackList';
 import SonicPiFormatter from './utils/SonicPiFormatter';
 import FileUploadForm from './components/FileUploadForm';
-import NoteReader from './utils/NoteReader';
-import generateNoteChain from './utils/MarkovChainGenerator';
+
 const { trie2 } = require('./utils/Trie2');
 import Grid from '@mui/material/Grid';
+import GenerateControls from './components/GenerateControls';
 const App = () => {
 
 	const [files, setFiles] = useState([]);
@@ -22,7 +22,7 @@ const App = () => {
 	const [isLoading, setLoading] = useState(true);
 	const [trie, setTrie] = useState();
 	const [result, setResult] = useState([]);
-	const notereader = new NoteReader();
+	
 
 	useEffect(() => {
 		fileService.getAll().then(files =>
@@ -57,29 +57,20 @@ const App = () => {
 		);
 	};
 
-	const generateResult = async ( amount, trie ) => {
-        let clone = [...result];
-		for (let i = 0; i < amount; i++) {
-            clone.push(generateNoteChain(trie.root, Array.apply(null, Array(5)), 0));
-		}
-        console.log('RESULT:', result);
-        setResult(clone);
+	const handleClear = ({ setResult, result }) => {
+        console.log('Before', result);
+		setResult([]);
+		console.log('After', result);
 	};
 
-	const handleGenerateButton = async (e) => {
-		setResult([], () => {console.log('Result is empty', result.length === 0);});
-		if (midiAsJSON !== undefined && selectedTrack !== undefined) {
-			const theTrie = notereader.readJSON(midiAsJSON, selectedTrack);
-			generateResult(4,theTrie);
-		}
-	};
  
 	return (
 		<div>
 			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
 			<Header/>
 			<FileUploadForm refreshFiles={refreshFileList}/>
-			<Button variant="contained" onClick={() => handleGenerateButton()}>Trie again!</Button>
+			<GenerateControls amount={5} result={result} setResult={setResult} midiAsJSON={midiAsJSON} selectedTrack={selectedTrack}/>
+			<Button variant="contained" onClick={() => handleClear({ setResult})}>Clear result</Button>
 			<Grid container spacing={2}>
 				<Grid item xs={4}>
 					<FileList uploadedFiles={files} handleClick={handleFileSelection}/>
