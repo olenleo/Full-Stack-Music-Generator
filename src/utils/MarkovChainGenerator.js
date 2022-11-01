@@ -31,7 +31,6 @@ function printTrie(root, freqArray, depth) {
  * @param {*} depth Current depth in trie
  */
 function generateNoteChain(root, freqArray, depth, division) {
-	console.log('GENERATE NOTE CHAIN:');
 	if (root.end) {
 		console.log('end:', freqArray);
 		return freqArray;

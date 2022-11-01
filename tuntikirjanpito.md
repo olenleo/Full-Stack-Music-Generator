@@ -28,7 +28,7 @@
 | 11.10 | 1     | Work on CalculateOdds method                                                                             |
 | 26.10 | 4.5   | Work on markov chain generation                                                                          |
 | 27.10 | 4.5   | Fix generation bug; Start work on note durations                                                         |
-| 31.10 | 13-14   | Work on note durations                                                         |
-| 1.11 | 1.5   | Work on note durations                                                         |
+| 31.10 | 1   | Work on note durations                                                         |
+| 1.11 | 3.5  | Work on note durations                                                         |
 | :----:|:----- |:-----                                                                                                    |
 | SUM   | 58.5    |                                                                                                        |
