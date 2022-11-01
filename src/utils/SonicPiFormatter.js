@@ -15,6 +15,7 @@ const notes = ['C', 'Cs', 'D', 'Ds', 'E', 'F', 'Fs', 'G', 'Gs', 'A', 'As', 'B', 
 const tresholds = [109,97,85,73,61,49,37,25,13];
 
 const parseNote = (note) => {
+    
 	if (typeof note === String) {
 		return 0;
 	} else if (typeof note === 'number') {
@@ -35,11 +36,14 @@ const parseOctave = (note) => {
 
 const formatAndPushNoteEvent = (item, index) => {
 	item.forEach(note => {
+		console.log('Note: ', note);
 		const pitch = parseNote(note.pitch);
 		const key = uniqid('index-', index);
 		const noteAsJSON = {
 			'pitch' : `${pitch}`,
 			'amp' : 0.5,
+			'duration' : `${note.duration}`,
+			'rest' : `${note.rest}`,
 			'key' : `${key}`
 		};
         
@@ -64,7 +68,7 @@ const SonicPiFormatter =( {result} ) => {
 		<div>
 			<code>
 				{noteEvents.map(noteJSONarray => (
-					<Note key = {noteJSONarray.key} note={noteJSONarray.pitch} amplitude={noteJSONarray.amp}></Note>
+					<Note key = {noteJSONarray.key} note={noteJSONarray.pitch} amplitude={noteJSONarray.amp} duration={noteJSONarray.duration} rest = {noteJSONarray.rest}></Note>
 				))}
 			</code>            
 		</div>

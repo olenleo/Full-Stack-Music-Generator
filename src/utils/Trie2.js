@@ -54,6 +54,7 @@ trie2.prototype.insert = function(word) {
 	
 	// for every character in the word
 	for(let i = 0; i < word.length; i++) {
+		console.log('Hi, trie here', word[i]);
 		const pitch = word[i].data[0];
 		const amplitude = word[i].data[1];
 		// check to see if character node exists in children.
@@ -63,6 +64,8 @@ trie2.prototype.insert = function(word) {
 				`{
                     "pitch" : ${pitch}, 
                     "amp": ${amplitude}, 
+                    "duration": ${word[i].duration},
+                    "rest": ${word[i].rest},
                     "freq": ${1},
                     "children": []
                 }`);

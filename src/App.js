@@ -63,8 +63,6 @@ const App = () => {
 	const generate = async ( amount ) => {
 		const arr  = [];
 		let theTrie = notereader.readJSON(midiAsJSON, selectedTrack);
-        const printarr = Array.apply(null, Array(5));
-        console.log('Print shit\n',  printTrie(theTrie.root, printarr, 0));
 		let chain;
 		for (let i = 0; i < amount; i++) {
 			if (midiAsJSON !== undefined && selectedTrack !== undefined) {
@@ -72,19 +70,16 @@ const App = () => {
 				arr.push(chain);
 			}
 		}
-		console.log('arr, ', arr, arr.length);
 		setResult(arr);
 	};
 
 	const handleGenerateButton =  async () => {
-        handleClear({setResult, result});
+		handleClear({setResult, result});
 		generate(3);
 	};
 
 	const handleClear = async ({ setResult, result }) => {
-		console.log('Before', result);
 		setResult([]);
-		console.log('After', result);
 	};
 
  
