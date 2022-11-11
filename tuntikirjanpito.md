@@ -28,7 +28,8 @@
 | 11.10 | 1     | Work on CalculateOdds method                                                                             |
 | 26.10 | 4.5   | Work on markov chain generation                                                                          |
 | 27.10 | 4.5   | Fix generation bug; Start work on note durations                                                         |
-| 31.10 | 1   | Work on note durations                                                         |
-| 1.11 | 3.5  | Work on note durations                                                         |
+| 31.10 | 1     | Work on note durations                                                                                   |  
+| 1.11  | 3.5   | Work on note durations                                                                                   |
+| 11.11 | 4     | Discover that the note duration bug is apparently related to bad erroneus reading by midi-parser-js. [MidiCSV](https://www.fourmilab.ch/webtools/midicsv/) gives very different results form test data with regard to note start deltatimes. Possible  fix: Disregard any notes with deltatime 0; this should allow me to get some proper note chains into the Trie; I want to focus on the web application development over MIDI file parsing.| 
 | :----:|:----- |:-----                                                                                                    |
-| SUM   | 58.5    |                                                                                                        |
+| SUM   | 63   |                                                                                                        |
