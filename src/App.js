@@ -26,7 +26,7 @@ const App = () => {
 	const [isLoading, setLoading] = useState(true);
 	const [result, setResult] = useState([]);
 	const notereader = new NoteReader();    
-    const amount = 5;
+	const amount = 5;
 	useEffect(() => {
 		setResult([]);
 		fileService.getAll().then(files =>

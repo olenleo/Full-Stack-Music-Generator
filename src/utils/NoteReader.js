@@ -30,19 +30,19 @@ function NoteReader() {
 			return a.deltaTime - b.deltaTime;
 		});
 		for (let e in trackdata) {
-            if (e.type === 9) {
-                offset = e.deltaTime;
+			if (e.type === 9) {
+				offset = e.deltaTime;
 				console.log('Offset: ', offset);
 				break;
 			}
 		}
 		trackdata.event.map((event) => {
-            if (event.type == 8 || event.type == 9){
-                if (event.deltaTime !== 0)
-                noteEvents.push(event);
+			if (event.type == 8 || event.type == 9){
+				if (event.deltaTime !== 0)
+					noteEvents.push(event);
 			}
 		});
-        console.log('TRACKDATA : 1 ', trackdata);
+		console.log('TRACKDATA : 1 ', trackdata);
 		console.log('Sorted noteEvents:', noteEvents);
 	};
 

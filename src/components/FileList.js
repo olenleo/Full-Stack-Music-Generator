@@ -18,7 +18,7 @@ const FileList = ({uploadedFiles, handleClick}) => {
 		return (        
 			<div>
 				<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
-                <h3>Available Files</h3>
+				<h3>Available Files</h3>
 				<Box>
 					{uploadedFiles.map(f => 
 						<List key ={f.id}>
