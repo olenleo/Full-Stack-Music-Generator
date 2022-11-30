@@ -31,5 +31,8 @@
 | 31.10 | 1     | Work on note durations                                                                                   |  
 | 1.11  | 3.5   | Work on note durations                                                                                   |
 | 11.11 | 4     | Discover that the note duration bug is apparently related to bad erroneus reading by midi-parser-js. [MidiCSV](https://www.fourmilab.ch/webtools/midicsv/) gives very different results form test data with regard to note start deltatimes. Possible  fix: Disregard any notes with deltatime 0; this should allow me to get some proper note chains into the Trie; I want to focus on the web application development over MIDI file parsing.| 
+| 30.11 |       | Returning after a long hiatus.
+Midi parsing is not currently working; I will leave it as-is in favour of implementing more web application functionality. |
 | :----:|:----- |:-----                                                                                                    |
-| SUM   | 63   |                                                                                                        |
+| SUM   | 65   |                                                                                                           |
+

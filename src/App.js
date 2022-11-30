@@ -26,7 +26,7 @@ const App = () => {
 	const [isLoading, setLoading] = useState(true);
 	const [result, setResult] = useState([]);
 	const notereader = new NoteReader();    
-    
+    const amount = 5;
 	useEffect(() => {
 		setResult([]);
 		fileService.getAll().then(files =>
@@ -66,7 +66,7 @@ const App = () => {
 		let chain;
 		for (let i = 0; i < amount; i++) {
 			if (midiAsJSON !== undefined && selectedTrack !== undefined) {
-				chain = generateNoteChain(theTrie.root, Array.apply(null, Array(5)), 0);
+				chain = generateNoteChain(theTrie.root, Array.apply(null, Array(amount)), 0);
 				arr.push(chain);
 			}
 		}

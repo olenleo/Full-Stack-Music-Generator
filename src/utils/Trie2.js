@@ -48,7 +48,6 @@ function trie2() {
 // inserts a word into the trie.
 // time complexity: O(k), k = word length
 
-// TODO: Check that this inserts properly a trie.
 trie2.prototype.insert = function(word) {
 	let node = this.root; // we start at the root.
 	

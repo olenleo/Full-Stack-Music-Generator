@@ -56,7 +56,6 @@ function generateNoteChain(root, freqArray, depth, division) {
                     "children": []
                 }`);
 			freqArray[depth] = contentAsJSON;
-			num = getDouble();
 			return generateNoteChain(root.children[i], freqArray, depth + 1, division);
 		}
 	
