@@ -21,7 +21,7 @@
 | 29.9  |  1.5  | Frontend: Work on parsing notes into a trie                                                              |
 | 30.9  |  1.5  | Make test material for midi parsing, work on midi parsing                                                |
 | 3.10  |  4.5  | Implement trie data structure, fix array splicing bug                                                    |
-| 5.10  | 3.5   | Start implementing markov chain generation.Adapted from previous work on a similar project.              | 
+| 5.10  | 3.5   | Start implementing markov chain generation. Adapted from previous work on a similar project.             | 
 | 6.10  | 2     | Re-implementing trie; I had several JSON-related bugs.                                                   | 
 | 7.10  | 1.5   | Further work on markov chain generation, update MaterialUI frontend                                      |
 | 10.10 | 1.5   | Intermediary; Generated notechain display component                                                      |
@@ -31,8 +31,9 @@
 | 31.10 | 1     | Work on note durations                                                                                   |  
 | 1.11  | 3.5   | Work on note durations                                                                                   |
 | 11.11 | 4     | Discover that the note duration bug is apparently related to bad erroneus reading by midi-parser-js. [MidiCSV](https://www.fourmilab.ch/webtools/midicsv/) gives very different results form test data with regard to note start deltatimes. Possible  fix: Disregard any notes with deltatime 0; this should allow me to get some proper note chains into the Trie; I want to focus on the web application development over MIDI file parsing.| 
-| 30.11 |       | Returning after a long hiatus.
+| 30.11 |   2    | Returning after a long hiatus.
 Midi parsing is not currently working; I will leave it as-is in favour of implementing more web application functionality. |
+| 9.12 | 09.00 -> | Fly.io troubleshooting; Plan to do some unit testing and CI/CD work today.                             |
 | :----:|:----- |:-----                                                                                                    |
 | SUM   | 65   |                                                                                                           |
 
