@@ -35,6 +35,7 @@
 | 9.12 | 0.5    | Fly.io troubleshooting; Plan to do some unit testing and CI/CD work today.                             |
 | 10.12 |  1  |   Reading up on docker containerisation of a node.js / react application. I've decided to complete the course part 12.|
 |2.1| 3.5 | Reading up on material.ui documentation, implementing a copy resulting song button |
+|2.1| 1.5 | Frontend research and development... I'm so out of my comfort zone. |
 | :----:|:----- |:-----                                                                                                    |
 | SUM   | 74   |                                                                                                           |
 
