@@ -15,6 +15,7 @@ import NoteReader from './utils/NoteReader';
 import {generateNoteChain, printTrie} from './utils/MarkovChainGenerator';
 
 
+
 const App = () => {
 
 	const [files, setFiles] = useState([]);
@@ -27,6 +28,7 @@ const App = () => {
 	const [result, setResult] = useState([]);
 	const notereader = new NoteReader();    
 	const amount = 5;
+
 	useEffect(() => {
 		setResult([]);
 		fileService.getAll().then(files =>
@@ -43,9 +45,7 @@ const App = () => {
 	}
 
 	const handleFileSelection = async (title) => {
-		
 		setSelectedFile(title);
-	
 		fileService.getMidiData(title.name).then(data => setMidiAsJSON(data));
 	};
 

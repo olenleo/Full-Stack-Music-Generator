@@ -9,7 +9,7 @@
 import React from 'react';
 import Note from '../components/Note';
 import uniqid from 'uniqid';
-
+import CopyButton from '../components/CopyButton';
 let noteEvents = [];
 const notes = ['C', 'Cs', 'D', 'Ds', 'E', 'F', 'Fs', 'G', 'Gs', 'A', 'As', 'B', 'C'];
 const tresholds = [109,97,85,73,61,49,37,25,13];
@@ -68,7 +68,7 @@ const SonicPiFormatter =( {result} ) => {
 	));
 	
 	return (
-		<div>
+		<div id="resultMelody">
 			<code>
 				<p>use_synth :blade</p>
 				<p>with_fx :reverb do</p>
@@ -76,7 +76,9 @@ const SonicPiFormatter =( {result} ) => {
 					<Note key = {noteJSONarray.key} note={noteJSONarray.pitch} amplitude={noteJSONarray.amp} duration={noteJSONarray.duration} rest = {noteJSONarray.rest} amp = {noteJSONarray.amp}></Note>
 				))}
 				<p>end</p>
-			</code>            
+			</code>
+            
+			<CopyButton text={result}/>
 		</div>
 	);
 };
