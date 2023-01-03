@@ -38,6 +38,7 @@
 |2.1| 1.5 | Frontend research and development... I'm so out of my comfort zone. |
 |3.1| 1.5 | Study 'JSX props should not use arrow functions' problem in app.js |
 |3.1| 2   | Copy to clipboard function now includes newline characters  |
+|3.1| 1.5   | Tracking down a fly.io error - suddenly getting a CORS or XSRF token error. Apparently the axios url is wrong.|
 | :----:|:----- |:-----                                                                                                    |
-| SUM   | 79   |                                                                                                           |
+| SUM   | 80.5   |                                                                                                           |
 
