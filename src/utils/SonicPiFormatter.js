@@ -72,6 +72,9 @@ const SonicPiFormatter =( {result} ) => {
 	
 	return (
 		<div>
+			<IconButton onClick={handleCopy} color="primary" aria-label="Copy to clipboard" sx={{ position: 'absolute', bottom: 6, right: 6 }}>
+				<FileCopyIcon/>
+			</IconButton>
 			<code id="resultMelody">
 				<p>use_synth :blade</p>
 				
@@ -82,9 +85,6 @@ const SonicPiFormatter =( {result} ) => {
 				<p>end</p>
 			</code>
             
-			<IconButton onClick={handleCopy} color="primary" aria-label="Copy to clipboard" sx={{ position: 'absolute', bottom: 6, right: 6 }}>
-				<FileCopyIcon/>
-			</IconButton>
 		</div>
 	);
 };

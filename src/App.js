@@ -93,8 +93,8 @@ const App = () => {
 			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
 			<Header/>
 			<FileUploadForm refreshFiles={refreshFileList}/>
-			<GenerateControls handleClick={() => handleGenerateButton()}/>
-			<Button variant="contained" onClick={() => handleClear({ setResult })}>Clear result</Button>
+			
+			
 			<Box sx = {gridContainer}>
 				<Grid item xs={4}>
 					<FileList uploadedFiles={files} handleClick={event => handleFileSelection(event)}/>
@@ -104,6 +104,8 @@ const App = () => {
 				</Grid>
 				<Grid item xs={4}>
 					<h3>Resulting track:</h3>
+					<GenerateControls handleClick={() => handleGenerateButton()}/>
+					<Button variant="contained" onClick={() => handleClear({ setResult })}>Clear result</Button>
 					<SonicPiFormatter result={result}/>
 				</Grid>
 			</Box>
