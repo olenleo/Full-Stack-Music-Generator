@@ -38,5 +38,5 @@
 |2.1| 1.5 | Frontend research and development... I'm so out of my comfort zone. |
 |3.1| 1.5 | Study 'JSX props should not use arrow functions' problem in app.js |
 | :----:|:----- |:-----                                                                                                    |
-| SUM   | 74   |                                                                                                           |
+| SUM   | 77   |                                                                                                           |
 
