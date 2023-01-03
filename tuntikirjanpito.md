@@ -37,6 +37,7 @@
 |2.1| 3.5 | Reading up on material.ui documentation, implementing a copy resulting song button |
 |2.1| 1.5 | Frontend research and development... I'm so out of my comfort zone. |
 |3.1| 1.5 | Study 'JSX props should not use arrow functions' problem in app.js |
+|3.1| 2   | Copy to clipboard function now includes newline characters  |
 | :----:|:----- |:-----                                                                                                    |
-| SUM   | 77   |                                                                                                           |
+| SUM   | 79   |                                                                                                           |
 

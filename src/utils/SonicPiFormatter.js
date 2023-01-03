@@ -6,10 +6,11 @@
  * @returns 
  */
 
-import React from 'react';
+import React, {useCallback} from 'react';
 import Note from '../components/Note';
 import uniqid from 'uniqid';
-import CopyButton from '../components/CopyButton';
+import IconButton from '@mui/material/IconButton';
+import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
 let noteEvents = [];
 const notes = ['C', 'Cs', 'D', 'Ds', 'E', 'F', 'Fs', 'G', 'Gs', 'A', 'As', 'B', 'C'];
 const tresholds = [109,97,85,73,61,49,37,25,13];
@@ -36,7 +37,6 @@ const parseOctave = (note) => {
 
 const formatAndPushNoteEvent = (item, index) => {
 	item.forEach(note => {
-		console.log('note:', note);
 		const pitch = parseNote(note.pitch);
 		if (note.duration == 0) {
 			note.duration = 0.25;
@@ -49,16 +49,12 @@ const formatAndPushNoteEvent = (item, index) => {
 			'rest' : `${note.rest}`,
 			'key' : `${key}`
 		};
-        
 		noteEvents.push(noteAsJSON);
 	});
-    
 };
 
 
 const SonicPiFormatter =( {result} ) => {
-	console.log('Sonic Pi formatter recieves an array:', result);
-    
 	if (result === undefined) {
 		return(<div><p>Please select song title and track.</p></div>);
 	}
@@ -66,11 +62,19 @@ const SonicPiFormatter =( {result} ) => {
 	result.map((item, index) => (
 		formatAndPushNoteEvent(item, index)
 	));
+
+	const handleCopy = useCallback(async () => {
+		let copyText = document.getElementById('resultMelody');
+		console.log(copyText);
+		await navigator.clipboard.writeText(copyText.outerText);
+	}
+	);
 	
 	return (
-		<div id="resultMelody">
-			<code>
+		<div>
+			<code id="resultMelody">
 				<p>use_synth :blade</p>
+				
 				<p>with_fx :reverb do</p>
 				{noteEvents.map(noteJSONarray => (
 					<Note key = {noteJSONarray.key} note={noteJSONarray.pitch} amplitude={noteJSONarray.amp} duration={noteJSONarray.duration} rest = {noteJSONarray.rest} amp = {noteJSONarray.amp}></Note>
@@ -78,7 +82,9 @@ const SonicPiFormatter =( {result} ) => {
 				<p>end</p>
 			</code>
             
-			<CopyButton text={result}/>
+			<IconButton onClick={handleCopy} color="primary" aria-label="Copy to clipboard" sx={{ position: 'absolute', bottom: 6, right: 6 }}>
+				<FileCopyIcon/>
+			</IconButton>
 		</div>
 	);
 };
