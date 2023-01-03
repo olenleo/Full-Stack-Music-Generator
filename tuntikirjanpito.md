@@ -36,6 +36,7 @@
 | 10.12 |  1  |   Reading up on docker containerisation of a node.js / react application. I've decided to complete the course part 12.|
 |2.1| 3.5 | Reading up on material.ui documentation, implementing a copy resulting song button |
 |2.1| 1.5 | Frontend research and development... I'm so out of my comfort zone. |
+|3.1| 1.5 | Study 'JSX props should not use arrow functions' problem in app.js |
 | :----:|:----- |:-----                                                                                                    |
 | SUM   | 74   |                                                                                                           |
 
