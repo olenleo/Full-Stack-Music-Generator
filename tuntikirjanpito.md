@@ -30,15 +30,16 @@
 | 27.10 | 4.5   | Fix generation bug; Start work on note durations                                                         |
 | 31.10 | 1     | Work on note durations                                                                                   |  
 | 1.11  | 3.5   | Work on note durations                                                                                   |
-| 11.11 | 4     | Discover that the note duration bug is apparently related to bad erroneus reading by midi-parser-js. [MidiCSV](https://www.fourmilab.ch/webtools/midicsv/) gives very different results form test data with regard to note start deltatimes. Possible  fix: Disregard any notes with deltatime 0; this should allow me to get some proper note chains into the Trie; I want to focus on the web application development over MIDI file parsing.| 
-| 30.11 |   2   | Returning after a long hiatus. Midi parsing is not currently working; I will leave it as-is in favour of implementing more web application functionality. |
-| 9.12 	| 0.5    | Fly.io troubleshooting; Plan to do some unit testing and CI/CD work today.                             |
-| 10.12 |  1  |   Reading up on docker containerisation of a node.js / react application. I've decided to complete the course part 12.|
-|2.1	| 3.5 | Reading up on material.ui documentation, implementing a copy resulting song button |
-|2.1	| 1.5 | Frontend research and development... I'm so out of my comfort zone. |
-|3.1	| 5 | Study 'JSX props should not use arrow functions' problem in app.js. And end up in the react documentation rabbit hole. |
-|3.1| -   | Copy to clipboard function now includes newline characters  |
-|3.1| -   | Tracking down a fly.io error - suddenly getting a CORS or XSRF token error. Apparently the axios url is wrong.|
+| 11.11 | 4     | Discover that the note duration bug is apparently related to bad / erroneus reading by midi-parser-js. [MidiCSV](https://www.fourmilab.ch/webtools/midicsv/) gives very different results form test data with regard to note start deltatimes. Possible  fix: Disregard any notes with deltatime 0; this should allow me to get some proper note chains into the Trie; I want to focus on the web application development over MIDI file parsing.| 
+| 30.11 |   2   | Returning after a long hiatus. Midi parsing is not currently working; I will leave it as-is in favour of implementing more web application functionality.|
+| 9.12 	| 0.5   | Fly.io troubleshooting; Plan to do some unit testing and CI/CD work today.                             |
+| 10.12 |  1  	|   Reading up on docker containerisation of a node.js / react application. I've decided to complete the course part 12.|
+|2.1	| 3.5 	| Reading up on material.ui documentation, implementing a copy resulting song button |
+|2.1	| 1.5 	| Frontend research and development... I'm so out of my comfort zone. |
+|3.1	| 5 	| Study 'JSX props should not use arrow functions' problem in app.js. And end up in the react documentation rabbit hole. |
+|3.1	| -   	| Copy to clipboard function now includes newline characters  |
+|3.1	| -   	| Tracking down a fly.io error - suddenly getting a CORS or XSRF token error. Apparently the axios url is wrong.|
+|4.1	|	1.5 |	Fix frontend baseUrl. Application runs on port 3001.												|
 | :----:|:----- |:-----                                                                                                    |
-| SUM   | 80.5   |                                                                                                           |
+| SUM   | 82   |                                                                                                           |
 

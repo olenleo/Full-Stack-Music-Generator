@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseUrl =  'http://localhost:3001/api/files/';
+const baseUrl =  'api/files/';
 
 let token = null;
 
@@ -9,6 +9,7 @@ const setToken = newToken => {
 };
 
 const getAll = () => {
+	console.log('GetAll');
 	const request = axios.get(baseUrl + 'getList');
 	return request.then(response => response.data);
 };
