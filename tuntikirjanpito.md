@@ -39,7 +39,8 @@
 |3.1	| 5 	| Study 'JSX props should not use arrow functions' problem in app.js. And end up in the react documentation rabbit hole. |
 |3.1	| -   	| Copy to clipboard function now includes newline characters  |
 |3.1	| -   	| Tracking down a fly.io error - suddenly getting a CORS or XSRF token error. Apparently the axios url is wrong.|
-|4.1	|	1.5 |	Fix frontend baseUrl. Application runs on port 3001.												|
+|4.1	|	1.5 | Fix frontend baseUrl. Application runs on port 3001.												|
+|9.1	|	1	| Planning out the next two weeks with regard to this project |
 | :----:|:----- |:-----                                                                                                    |
 | SUM   | 82   |                                                                                                           |
 
