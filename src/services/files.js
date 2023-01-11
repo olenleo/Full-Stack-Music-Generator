@@ -1,5 +1,5 @@
 import axios from 'axios';
-const baseUrl =  'http://localhost:3001/api/files/';
+const baseUrl =  '/api/files/';
 
 let token = null;
 
@@ -21,7 +21,7 @@ const getMidiData = ( filename ) => {
 
 const upload = ( file ) => {
 	console.log('upload', file);
-	const request = axios.post((baseUrl + 'upload/'), file);
+	const request = axios.post((baseUrl + '/upload/'), file);
 	return request.then(response => response.data);
 };
 
