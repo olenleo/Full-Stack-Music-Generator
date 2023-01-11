@@ -41,6 +41,7 @@
 |3.1	| -   	| Tracking down a fly.io error - suddenly getting a CORS or XSRF token error. Apparently the axios url is wrong.|
 |4.1	|	1.5 | Fix frontend baseUrl. Application runs on port 3001.												|
 |9.1	|	1	| Planning out the next two weeks with regard to this project |
+|11.1	|   2	| Debugging CORS error in deployment...																		|
 | :----:|:----- |:-----                                                                                                    |
-| SUM   | 82   |                                                                                                           |
+| SUM   | 83   |                                                                                                           |
 
