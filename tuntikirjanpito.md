@@ -43,5 +43,5 @@
 |9.1	|	1	| Planning out the next two weeks with regard to this project |
 |11.1	|   3.5 | Debugging CORS error in deployment... And fixing it														 |
 | :----:|:----- |:-----                                                                                                    |
-| SUM   | 83   |                                                                                                           |
+| SUM   | 86.5   |                                                                                                           |
 
