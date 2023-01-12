@@ -11,19 +11,22 @@ import FileUploadForm from './components/FileUploadForm';
 
 const { trie2 } = require('./utils/Trie2');
 import Grid from '@mui/material/Grid';
+import Card from '@mui/material/Card';
+import Container from '@mui/material/Container';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Stack from '@mui/material/Stack';
 import Box from '@mui/material/Box';
 import GenerateControls from './components/GenerateControls';
 import NoteReader from './utils/NoteReader';
 import {generateNoteChain, printTrie} from './utils/MarkovChainGenerator';
-
-
 
 const App = () => {
 
 	const [files, setFiles] = useState([]);
 	const [selectedFile, setSelectedFile] = useState([]);
 	const [uploadedFile, setUploadedFile] = useState([]);
-	const [isFilePicked, setIsFilePicked] = useState(false);
+	const [fileIsSelected, setFileIsSelected] = useState(false);
 	const [selectedTrack, setSelectedTrack] = useState();
 	const [midiAsJSON, setMidiAsJSON] = useState([]);
 	const [isLoading, setLoading] = useState(true);
@@ -48,6 +51,7 @@ const App = () => {
 
 	const handleFileSelection = async (title) => {
 		setSelectedFile(title);
+		setFileIsSelected(true);
 		fileService.getMidiData(title.name).then(data => setMidiAsJSON(data));
 	};
 
@@ -79,36 +83,26 @@ const App = () => {
 		handleClear({setResult, result});
 		generate(3);};
 
-	const handleClear = async ({ setResult, result }) => {
+	const handleClear = async ({ setResult }) => {
 		setResult([]);
-	};
-
-	const gridContainer = {
-		display: 'grid',
-		gridTemplateColumns: 'repeat(3, 1fr)'
 	};
 
 	return (
 		<div>
 			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
 			<Header/>
-			<FileUploadForm refreshFiles={refreshFileList}/>
-			
-			
-			<Box sx = {gridContainer}>
-				<Grid item xs={4}>
-					<FileList uploadedFiles={files} handleClick={event => handleFileSelection(event)}/>
-				</Grid>
-				<Grid item xs={4}>
+			<Container maxWidth="sm">
+				<FileUploadForm refreshFiles={refreshFileList}/>
+				<GenerateControls handleClick={() => handleGenerateButton()}/>
+				<Button variant="contained" onClick={() => handleClear({ setResult })}>Clear result</Button>
+				<Stack>
+					<FileList selectedFile={selectedFile} uploadedFiles={files} handleClick={event => handleFileSelection(event)}/>
 					<TrackList midiDataAsJSON={midiAsJSON} handleClick={event => handleTrackSelection(event)}/>
-				</Grid>
-				<Grid item xs={4}>
 					<h3>Resulting track:</h3>
-					<GenerateControls handleClick={() => handleGenerateButton()}/>
-					<Button variant="contained" onClick={() => handleClear({ setResult })}>Clear result</Button>
 					<SonicPiFormatter result={result}/>
-				</Grid>
-			</Box>
+				</Stack>
+
+			</Container>
 			<Footer/>
 		</div>
 	);

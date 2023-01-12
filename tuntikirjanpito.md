@@ -34,14 +34,16 @@
 | 30.11 |   2   | Returning after a long hiatus. Midi parsing is not currently working; I will leave it as-is in favour of implementing more web application functionality.|
 | 9.12 	| 0.5   | Fly.io troubleshooting; Plan to do some unit testing and CI/CD work today.                             |
 | 10.12 |  1  	|   Reading up on docker containerisation of a node.js / react application. I've decided to complete the course part 12.|
-|2.1	| 3.5 	| Reading up on material.ui documentation, implementing a copy resulting song button |
-|2.1	| 1.5 	| Frontend research and development... I'm so out of my comfort zone. |
-|3.1	| 5 	| Study 'JSX props should not use arrow functions' problem in app.js. And end up in the react documentation rabbit hole. |
-|3.1	| -   	| Copy to clipboard function now includes newline characters  |
-|3.1	| -   	| Tracking down a fly.io error - suddenly getting a CORS or XSRF token error. Apparently the axios url is wrong.|
-|4.1	|	1.5 | Fix frontend baseUrl. Application runs on port 3001.												|
-|9.1	|	1	| Planning out the next two weeks with regard to this project |
-|11.1	|   3.5 | Debugging CORS error in deployment... And fixing it														 |
+| 2.1	| 3.5 	| Reading up on material.ui documentation, implementing a copy resulting song button |
+| 2.1	| 1.5 	| Frontend research and development... I'm so out of my comfort zone. |
+| 3.1	| 5 	| Study 'JSX props should not use arrow functions' problem in app.js. And end up in the react documentation rabbit hole. |
+| 3.1	| -   	| Copy to clipboard function now includes newline characters  |
+| 3.1	| -   	| Tracking down a fly.io error - suddenly getting a CORS or XSRF token error. Apparently the axios url is wrong.|
+| 4.1	|	1.5 | Fix frontend baseUrl. Application runs on port 3001.												|
+| 9.1	|	1	| Planning out the next two weeks with regard to this project |
+| 11.1	|   3.5 | Debugging CORS error in deployment... And fixing it														 |
+| 12.1 | 2 | Material UI studies - attempt to change app layout to a stack |
+| 12.1 | 2.5 | Try out a Material UI dialog; too intrusive and a bit complex; back to fundamentals, make a collapsible fileList that depends on state  |
 | :----:|:----- |:-----                                                                                                    |
-| SUM   | 86.5   |                                                                                                           |
+| SUM   | 91   |                                                                                                           |
 
