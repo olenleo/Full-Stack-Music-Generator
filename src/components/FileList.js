@@ -11,16 +11,13 @@ import { Button } from '@mui/material';
 
 const FileList = ({selectedFile, uploadedFiles, handleClick}) => {
 	const [listShouldRender, setListShouldRender] = useState(true);
-	console.log('State:', listShouldRender);
 	
 	const closeList = () => {
 		setListShouldRender(false);
-		console.log('Closed:', listShouldRender);
 	};
 
 	const openList = () => {
 		setListShouldRender(true);
-		console.log('Not cloesd?:', listShouldRender);
 	};
 	if (uploadedFiles === null) {
 		return (
@@ -30,7 +27,6 @@ const FileList = ({selectedFile, uploadedFiles, handleClick}) => {
 		);
 	}    
 	if (selectedFile && listShouldRender === true) {
-		console.log('Open');
 		return (        
 			<div>
 				<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
@@ -51,10 +47,9 @@ const FileList = ({selectedFile, uploadedFiles, handleClick}) => {
 			</div>
 		);
 	} else {
-		console.log('CLosed');
 		return(
 			<div>
-				<h3>Selected: <Button onClick={() => openList()}>{selectedFile.name}</Button></h3>
+				<h3>Selected File: <Button onClick={() => openList()}>{selectedFile.name}</Button></h3>
 			</div>
 		);
 	}

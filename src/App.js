@@ -83,7 +83,7 @@ const App = () => {
 		handleClear({setResult, result});
 		generate(3);};
 
-	const handleClear = async ({ setResult }) => {
+	const handleClear = async ({ setResult, result }) => {
 		setResult([]);
 	};
 
@@ -91,18 +91,21 @@ const App = () => {
 		<div>
 			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
 			<Header/>
-			<Container maxWidth="sm">
-				<FileUploadForm refreshFiles={refreshFileList}/>
-				<GenerateControls handleClick={() => handleGenerateButton()}/>
-				<Button variant="contained" onClick={() => handleClear({ setResult })}>Clear result</Button>
-				<Stack>
-					<FileList selectedFile={selectedFile} uploadedFiles={files} handleClick={event => handleFileSelection(event)}/>
-					<TrackList midiDataAsJSON={midiAsJSON} handleClick={event => handleTrackSelection(event)}/>
-					<h3>Resulting track:</h3>
-					<SonicPiFormatter result={result}/>
-				</Stack>
-
-			</Container>
+			<FileUploadForm refreshFiles={refreshFileList}/>
+			<GenerateControls handleClick={() => handleGenerateButton()}/>
+			<Button variant="contained" onClick={() => handleClear({ setResult })}>Clear result</Button>
+			<Stack>
+				<Grid container spacing={2} justifyContent="center">
+					<Grid item sm={4}>
+						<FileList selectedFile={selectedFile} uploadedFiles={files} handleClick={event => handleFileSelection(event)}/>
+						<TrackList midiDataAsJSON={midiAsJSON} handleClick={event => handleTrackSelection(event)}/>
+					</Grid>
+					<Grid item sm={6}>
+						<h3>Resulting track:</h3>
+						<SonicPiFormatter result={result}/>
+					</Grid>
+				</Grid>
+			</Stack>
 			<Footer/>
 		</div>
 	);
