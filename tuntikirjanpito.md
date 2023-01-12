@@ -44,6 +44,7 @@
 | 11.1	|   3.5 | Debugging CORS error in deployment... And fixing it														 |
 | 12.1 | 2 | Material UI studies - attempt to change app layout to a stack |
 | 12.1 | 2.5 | Try out a Material UI dialog; too intrusive and a bit complex; back to fundamentals, make a collapsible fileList that depends on state  |
+| 12.1 | 1  | Implement collapsible UI element to track- and file selection   |
 | :----:|:----- |:-----                                                                                                    |
-| SUM   | 91   |                                                                                                           |
+| SUM   | 92   |                                                                                                           |
 
