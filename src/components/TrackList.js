@@ -24,12 +24,13 @@ const TrackList = ( { midiDataAsJSON, handleClick }) => {
 	if (midiDataAsJSON === null || midiDataAsJSON === undefined || midiDataAsJSON.length === 0) {
 		return(
 			<div>
-				<h3>The track list should be here</h3>
+				<h3>Available MIDI tracks</h3>
 			</div>
 		);
 	} 
 	if (midiDataAsJSON && listShouldRender) {
 		const trackInfo = midiDataAsJSON.track;
+		console.log('trackInfo', trackInfo);
 		return (        
 			<div>
 				<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>

@@ -57,6 +57,7 @@
 |		|		| Results are a fair bit more melodic now.		|
 |	18.1|	1	| Pass along state of trielength to child components; This might warrant the use of Redux? I'll try passing along props anyhow.		|
 |		|	1	| MUI Slider now handles both trie length and amount of generations. TODO: Separate.|
+|		|	1.5	| Separating sliders, study material.ui themes.|
 | :----:|:----- |:-----                                                                                                 |
-| SUM   | 104.5   |                                                                                                        |
+| SUM   | 106   |                                                                                                        |
 

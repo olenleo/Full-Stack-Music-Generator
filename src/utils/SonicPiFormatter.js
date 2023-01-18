@@ -6,11 +6,9 @@
  * @returns 
  */
 
-import React, {useCallback} from 'react';
+import React from 'react';
 import Note from '../components/Note';
 import uniqid from 'uniqid';
-import IconButton from '@mui/material/IconButton';
-import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
 let noteEvents = [];
 const notes = ['C', 'Cs', 'D', 'Ds', 'E', 'F', 'Fs', 'G', 'Gs', 'A', 'As', 'B', 'C'];
 const tresholds = [109,97,85,73,61,49,37,25,13];
@@ -63,21 +61,10 @@ const SonicPiFormatter =( {result} ) => {
 		formatAndPushNoteEvent(item, index)
 	));
 
-	const handleCopy = useCallback(async () => {
-		let copyText = document.getElementById('resultMelody');
-		console.log(copyText);
-		await navigator.clipboard.writeText(copyText.outerText);
-	}
-	);
-	
 	return (
 		<div>
-			<IconButton onClick={handleCopy} color="primary" aria-label="Copy to clipboard" sx={{ position: 'absolute', bottom: 6, right: 6 }}>
-				<FileCopyIcon/>
-			</IconButton>
 			<code id="resultMelody">
 				<p>use_synth :blade</p>
-				
 				<p>with_fx :reverb do</p>
 				{noteEvents.map(noteJSONarray => (
 					<Note key = {noteJSONarray.key} note={noteJSONarray.pitch} amplitude={noteJSONarray.amp} duration={noteJSONarray.duration} rest = {noteJSONarray.rest} amp = {noteJSONarray.amp}></Note>
