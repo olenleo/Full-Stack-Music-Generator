@@ -55,11 +55,11 @@
 |		|		| Start making generated melodies more musical as generation is bugged.		|
 |17.1	|	2 	| Fail to stop myself from troubleshooting the MIDI reading and parsing functions. I have misunderstood Deltatime - it can signify the *time units between two signals*. You never know what you'll find inside a MIDI file!|
 |		|		| Results are a fair bit more melodic now.		|
-|	18.1|	5	| Pass along state of trielength to child components; This might warrant the use of Redux? I'll try passing along props anyhow.		|
+|	18.1|	5.5	| Pass along state of trielength to child components; This might warrant the use of Redux? I'll try passing along props anyhow.		|
 |		|		| MUI Slider now handles both trie length and amount of generations. TODO: Separate.|
 |		|		| Separating sliders, study material.ui themes.|
 |		|		| Deploy issues. *X-Content-Type-Options* seem to keep popping up recently after deployments. |
 |		|		| Frontend, CSS and Grids w/ material UI					|
 | :----:|:----- |:-----                                                                                                 |
-| SUM   | 107.5   |                                                                                                        |
+| SUM   | 108   |                                                                                                        |
 

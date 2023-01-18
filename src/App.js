@@ -108,40 +108,45 @@ const App = () => {
 	
 	return (
 		<div>
-			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
-			<Header/>
-			<Box sx={{ bgcolor: 'text.disabled', p: 8,  boxShadow: 3}} >
-				<Grid container spacing={2}>
-					<Grid item xs={4}>
-						<Box id="poksi" sx={{p: 4, shadow:3,height: 300 }}>
-							<FileUploadForm refreshFiles={refreshFileList}/>
-							<GenerateControls handleClick={() => handleGenerateButton()}/>
-							<IconButton onClick={handleCopy} color="primary" aria-label="Copy to clipboard">
-								<FileCopyIcon/>
-							</IconButton>
-							<Button variant="contained" onClick={() => handleClear({ setResult })}>Clear result</Button>
-							<AmountSlider handleLengthChange={handleLength} handleSumChange={handleSumChange}/>
-						</Box>
-					</Grid>
-					<Grid item xs={4}>
-						<Box id="poksi" sx={{p:4, shadow:3, minHeight:300}}>
-							<FileList selectedFile={selectedFile} uploadedFiles={files} handleClick={handleFileSelection}/>
-							<TrackList midiDataAsJSON={midiAsJSON} handleClick={handleTrackSelection}/>
-						</Box>
-					</Grid>
-				</Grid>	
+			<Box sx={{bgcolor:'ghostwhite'}}>
+				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
+				<Header/>
+				<Container>
+					<Box sx={{ p: 2,  boxShadow: 3, bgcolor:'white'}} >
+						<Grid container spacing={2}>
+							<Grid item xs={4}>
+								<Box id="controlBox" sx={{p: 4, bgcolor: 'white', shadow:4,minHeight: 200 }}>
+									<FileUploadForm refreshFiles={refreshFileList}/>
+									<AmountSlider handleLengthChange={handleLength} handleSumChange={handleSumChange}/>
+									<GenerateControls handleClick={() => handleGenerateButton()}/>
+									<IconButton onClick={handleCopy} color="primary" aria-label="Copy to clipboard">
+										<FileCopyIcon/>
+									</IconButton>
+									<Button variant="contained" onClick={() => handleClear({ setResult })}>Clear result</Button>
+								</Box>
+							</Grid>
+							<Grid item xs={4}>
+								<Box id="trackSelectorBox" sx={{p:4, shadow:3, minHeight:200}}>
+									<FileList selectedFile={selectedFile} uploadedFiles={files} handleClick={handleFileSelection}/>
+									<TrackList midiDataAsJSON={midiAsJSON} handleClick={handleTrackSelection}/>
+								</Box>
+							</Grid>
+						</Grid>	
+					</Box>
+				</Container>
+				<br/>
+				<Container>
+					<Box sx={{p:8, bgcolor:'white', shadow:3}}>
+						<Grid container spacing={2}>
+							<Grid item xs={4}>
+								<h3>Resulting track:</h3>
+								<SonicPiFormatter result={result}/>
+							</Grid>
 				
+						</Grid>
+					</Box>
+				</Container>
 			</Box>
-			<Container>
-				<Grid container spacing={2}>
-						
-					<Grid item xs={4}>
-						<h3>Resulting track:</h3>
-						<SonicPiFormatter result={result}/>
-					</Grid>
-				
-				</Grid>
-			</Container>
 		</div>
 	);
 };
