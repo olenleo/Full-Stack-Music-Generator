@@ -51,13 +51,15 @@
 |		|		|  ```$ curl https://trie-musicgen.fly.dev/```or access via browser does not show up on fly logs 			|
 |		|	1	| Test uploading a MVP react app 																	|
 | 16.1	|	4	| Troubleshooting & testing deployment. Probably next step is re-launching the app.|
-| 		|		| Fix bug: mis-placed line app.use(express.static('build')). Deploy working version with updates & merge to main. |
+| 		|		| Fix bug: mis-placed line `app.use(express.static('build'))`. Deploy working version with updates & merge to main. |
 |		|		| Start making generated melodies more musical as generation is bugged.		|
 |17.1	|	2 	| Fail to stop myself from troubleshooting the MIDI reading and parsing functions. I have misunderstood Deltatime - it can signify the *time units between two signals*. You never know what you'll find inside a MIDI file!|
 |		|		| Results are a fair bit more melodic now.		|
-|	18.1|	1	| Pass along state of trielength to child components; This might warrant the use of Redux? I'll try passing along props anyhow.		|
-|		|	1	| MUI Slider now handles both trie length and amount of generations. TODO: Separate.|
-|		|	1.5	| Separating sliders, study material.ui themes.|
+|	18.1|	5	| Pass along state of trielength to child components; This might warrant the use of Redux? I'll try passing along props anyhow.		|
+|		|		| MUI Slider now handles both trie length and amount of generations. TODO: Separate.|
+|		|		| Separating sliders, study material.ui themes.|
+|		|		| Deploy issues. *X-Content-Type-Options* seem to keep popping up recently after deployments. |
+|		|		| Frontend, CSS and Grids w/ material UI					|
 | :----:|:----- |:-----                                                                                                 |
-| SUM   | 106   |                                                                                                        |
+| SUM   | 107.5   |                                                                                                        |
 

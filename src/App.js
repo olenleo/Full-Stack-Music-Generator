@@ -15,9 +15,11 @@ import GenerateControls from './components/GenerateControls';
 import AmountSlider from './components/AmountSlider';
 
 import Button from '@mui/material/Button';
+import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
+import Container from '@mui/material/Container';
 
 
 
@@ -108,28 +110,38 @@ const App = () => {
 		<div>
 			<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
 			<Header/>
-			<FileUploadForm refreshFiles={refreshFileList}/>
-			<Grid>
-				<GenerateControls handleClick={() => handleGenerateButton()}/>
-				<IconButton onClick={handleCopy} color="primary" aria-label="Copy to clipboard">
-					<FileCopyIcon/>
-				</IconButton>
-				<Button variant="contained" onClick={() => handleClear({ setResult })}>Clear result</Button>
-			</Grid>
-			
-			<AmountSlider handleLengthChange={handleLength} handleSumChange={handleSumChange}/>
-			
-			<Grid container spacing={2}>
-				<Grid item xs={4}>
-					<FileList selectedFile={selectedFile} uploadedFiles={files} handleClick={handleFileSelection}/>
-					<TrackList midiDataAsJSON={midiAsJSON} handleClick={handleTrackSelection}/>
-				</Grid>
-				<Grid item xs={4}>
-					<h3>Resulting track:</h3>
-					<SonicPiFormatter result={result}/>
-				</Grid>
+			<Box sx={{ bgcolor: 'text.disabled', p: 8,  boxShadow: 3}} >
+				<Grid container spacing={2}>
+					<Grid item xs={4}>
+						<Box id="poksi" sx={{p: 4, shadow:3,height: 300 }}>
+							<FileUploadForm refreshFiles={refreshFileList}/>
+							<GenerateControls handleClick={() => handleGenerateButton()}/>
+							<IconButton onClick={handleCopy} color="primary" aria-label="Copy to clipboard">
+								<FileCopyIcon/>
+							</IconButton>
+							<Button variant="contained" onClick={() => handleClear({ setResult })}>Clear result</Button>
+							<AmountSlider handleLengthChange={handleLength} handleSumChange={handleSumChange}/>
+						</Box>
+					</Grid>
+					<Grid item xs={4}>
+						<Box id="poksi" sx={{p:4, shadow:3, minHeight:300}}>
+							<FileList selectedFile={selectedFile} uploadedFiles={files} handleClick={handleFileSelection}/>
+							<TrackList midiDataAsJSON={midiAsJSON} handleClick={handleTrackSelection}/>
+						</Box>
+					</Grid>
+				</Grid>	
 				
-			</Grid>
+			</Box>
+			<Container>
+				<Grid container spacing={2}>
+						
+					<Grid item xs={4}>
+						<h3>Resulting track:</h3>
+						<SonicPiFormatter result={result}/>
+					</Grid>
+				
+				</Grid>
+			</Container>
 		</div>
 	);
 };

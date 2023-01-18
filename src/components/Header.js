@@ -1,11 +1,17 @@
 import React from 'react';
-import '../styles/style.css';
+import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
 
 const Header = () => {
 	return(
 		<div className = 'header'>
-			<h1>Generate music, then trie again</h1>
+			<Container>
+				<Box sx={{ color: 'primary.main', p: 1 }}>
+					<h1>Generate Music, then Trie again</h1>
+				</Box>
+			</Container>
 		</div>
+		
 	);
 };
 export default Header;
