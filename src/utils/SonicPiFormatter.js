@@ -36,7 +36,6 @@ const parseOctave = (note) => {
 
 const formatAndPushNoteEvent = (item, index) => {
 	item.forEach(note => {
-		console.log('note:', note);
 		const pitch = parseNote(note.pitch);
 		if (note.duration == 0) {
 			note.duration = 0.25;

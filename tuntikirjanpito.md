@@ -55,6 +55,8 @@
 |		|		| Start making generated melodies more musical as generation is bugged.		|
 |17.1	|	2 	| Fail to stop myself from troubleshooting the MIDI reading and parsing functions. I have misunderstood Deltatime - it can signify the *time units between two signals*. You never know what you'll find inside a MIDI file!|
 |		|		| Results are a fair bit more melodic now.		|
+|	18.1|	1	| Pass along state of trielength to child components; This might warrant the use of Redux? I'll try passing along props anyhow.		|
+|		|	1	| MUI Slider now handles both trie length and amount of generations. TODO: Separate.|
 | :----:|:----- |:-----                                                                                                 |
-| SUM   | 103.5   |                                                                                                        |
+| SUM   | 104.5   |                                                                                                        |
 

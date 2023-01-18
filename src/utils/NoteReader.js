@@ -5,8 +5,6 @@ const { trie2 } = require('./Trie2');
 // Initialise variables
 let noteEvents = []; 
 
-const len = 15; // Length of trie 'word', or rather the length of saved note patterns. TODO: This should arrive from props.
-
 // DeltaTime and 'note on' & 'note off'-related variables
 // We need to track when notes start and end for rhythm and chords.
 let previousNoteAmplitude = 0;
@@ -17,7 +15,7 @@ let arr = [];
 let noteStartDeltaTimes;
 // noteStack recieves a set amount (from 'len' constant) of notes; When full, push onto trie and pop the first note!
 let noteStack = [];
-
+let len = 9;
 
 function NoteReader() {
 	//this.division = division
@@ -28,27 +26,29 @@ function NoteReader() {
 		console.log('SETUP');
 		console.log('Trackdata', trackdata);
 		for (let e in trackdata) {
-            if (e.type === 9) {
-                offset = e.deltaTime;
+			if (e.type === 9) {
+				offset = e.deltaTime;
 				console.log('Offset: ', offset);
 				break;
 			}
 		}
 		trackdata.event.map((event) => {
-            if (event.type == 8 || event.type == 9){
-                if (event.deltaTime !== 0)
-                noteEvents.push(event);
+			if (event.type == 8 || event.type == 9){
+				if (event.deltaTime !== 0)
+					noteEvents.push(event);
 			}
 		});
-        console.log('TRACKDATA : 1 ', trackdata);
+		console.log('TRACKDATA : 1 ', trackdata);
 		console.log('Sorted noteEvents:', noteEvents);
 	};
 
-	NoteReader.prototype.readJSON = function(midiAsJSON, selectedTrack) {
+	NoteReader.prototype.readJSON = function(midiAsJSON, selectedTrack, trieLength) {
+		len = trieLength;
+		console.log('READJSON get len ', len);
 		division = midiAsJSON.timeDivision;
 		setUpMidiData(midiAsJSON.track[selectedTrack]);
 		for (let i = 0; i < 127; i++) {
-			noteStartDeltaTimes[i] = -1;
+			noteStartDeltaTimes[i] = -1;	
 		}
 		for (let i = 0; i < noteEvents.length; i++) {
 			handleNote(noteEvents[i], 0);
