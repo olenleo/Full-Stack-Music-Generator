@@ -32,7 +32,6 @@ function printTrie(root, freqArray, depth) {
  */
 function generateNoteChain(root, freqArray, depth, division) {
 	if (root.end) {
-		console.log('end:', freqArray);
 		return freqArray;
 	}
 	
@@ -50,7 +49,7 @@ function generateNoteChain(root, freqArray, depth, division) {
 				`{
                     "pitch" : ${i}, 
                     "amp": ${root.children[i].contentAsJSON.amp}, 
-                    "duration": ${noteDuration},
+                    "duration": ${Math.abs(noteDuration)},
                     "rest": ${Math.abs(timeToNextNote)},
                     "freq": ${root.children[i].contentAsJSON.freq},
                     "children": []

@@ -10,8 +10,7 @@ const JSONmidiParser = ({midiData, title, track}) => {
 			</div>
 		);
 	}
-	const data = midiData.track[track];
-	console.log('JSON midi parser data is : ', data);
+	
 	const tracks = midiData.track.length;
 	if (track === null || track === undefined) {
 		return(

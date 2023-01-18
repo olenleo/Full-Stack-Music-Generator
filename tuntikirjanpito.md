@@ -45,6 +45,18 @@
 | 12.1 | 2 | Material UI studies - attempt to change app layout to a stack |
 | 12.1 | 2.5 | Try out a Material UI dialog; too intrusive and a bit complex; back to fundamentals, make a collapsible fileList that depends on state  |
 | 12.1 | 1  | Implement collapsible UI element to track- and file selection   |
-| :----:|:----- |:-----                                                                                                    |
-| SUM   | 92   |                                                                                                           |
+| 12.1 | 0.5	| Track fly.io deployment; recieved 'cannot get '/'' error|
+| 13.1 | 3		| Resolving above error. `$ fly ssh console` works, and deployment shows all ok - error might be related to [https](https://community.fly.io/t/error-no-host-specified-in-headers-or-uri/9016)? Unsure on how to fix this. |
+|		|		| Localhost:3000 GET '/' uses HTTP/1.1 returns 200 OK; fly.io deployment uses HTTP:2.0, returns 404 |
+|		|		|  ```$ curl https://trie-musicgen.fly.dev/```or access via browser does not show up on fly logs 			|
+|		|	1	| Test uploading a MVP react app 																	|
+| 16.1	|	4	| Troubleshooting & testing deployment. Probably next step is re-launching the app.|
+| 		|		| Fix bug: mis-placed line app.use(express.static('build')). Deploy working version with updates & merge to main. |
+|		|		| Start making generated melodies more musical as generation is bugged.		|
+|17.1	|	2 	| Fail to stop myself from troubleshooting the MIDI reading and parsing functions. I have misunderstood Deltatime - it can signify the *time units between two signals*. You never know what you'll find inside a MIDI file!|
+|		|		| Results are a fair bit more melodic now.		|
+|	18.1|	1	| Pass along state of trielength to child components; This might warrant the use of Redux? I'll try passing along props anyhow.		|
+|		|	1	| MUI Slider now handles both trie length and amount of generations. TODO: Separate.|
+| :----:|:----- |:-----                                                                                                 |
+| SUM   | 104.5   |                                                                                                        |
 
