@@ -2,7 +2,7 @@
 import React, { useState, useEffect} from 'react';
 
 import fileService from './services/files';
-import scrollIntoView from 'scroll-into-view-if-needed';
+
 import NoteReader from './utils/NoteReader';
 import SonicPiFormatter from './utils/SonicPiFormatter';
 import { generateNoteChain } from './utils/MarkovChainGenerator';
@@ -69,6 +69,11 @@ const App = () => {
 		
 	}, []);
 
+	if (isLoading) {
+		return (
+			<h1>Loading information from backend...</h1>
+		);
+	}
 
 	const handleFileSelection = async (title) => {
 		setSelectedFile(title);
@@ -121,58 +126,42 @@ const App = () => {
 		let copyText = document.getElementById('resultMelody');
 		await navigator.clipboard.writeText(copyText.outerText);
 	});
-
-	const thing = ( event ) => {
-		console.log('event', event);
-		console.log('Bomp');
-	};
 	return (
 		<div>
-			<ThemeProvider theme={theme}>
-				<CssBaseline/>
-				
-				<Box sx={{bgcolor: 'primary.bg'}}>
-					<Header/>
-					
-					<Container>
-						<Box sx={{ p: 2,  boxShadow: 3, bgcolor:'white', borderRadius: '16px', ':hover' : {boxShadow: 6,}}} >
-							<Grid container item spacing={8} justify="center">
-								<Grid item xs={6}>
-									<Container>
-										<Box id="controlBox" sx={{p: 4, bgcolor: 'white',minHeight: 200 }}>
-											<FileUploadForm refreshFiles={refreshFileList}/>
-											<AmountSlider handleLengthChange={handleLength} handleSumChange={handleSumChange}/>
-											<GenerateControls handleClick={() => handleGenerateButton()}/>
-											<IconButton onClick={handleCopy} color="primary" aria-label="Copy to clipboard">
-												<FileCopyIcon/>
-											</IconButton>
-											<Button variant="contained" onClick={() => handleClear({ setResult })}>Clear result</Button>
-										</Box>
-										<Box id="trackSelectorBox" sx={{p:4, minHeight:200}}>
-											<FileList selectedFile={selectedFile} uploadedFiles={files} handleClick={handleFileSelection}/>
-											<TrackList midiDataAsJSON={midiAsJSON} handleClick={handleTrackSelection}/>
-										</Box>
-									</Container>
-								</Grid>
-								<Grid item xs={6}>
-									<InfoBox resultElement={() => console.log('bop')}/>
-								</Grid>
-							</Grid>
+			<CssBaseline/>
+			<Box sx={{bgcolor:'#fdf5df'}}>
+				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
+				<Header/>
+				<Container>
+					<Box sx={{ p: 2,  boxShadow: 3, bgcolor:'white', borderRadius: '16px', ':hover' : {boxShadow: 6,}}} >
+						<Box id="controlBox" sx={{p: 4, bgcolor: 'white',minHeight: 200 }}>
+							<FileUploadForm refreshFiles={refreshFileList}/>
+							<AmountSlider handleLengthChange={handleLength} handleSumChange={handleSumChange}/>
+							<GenerateControls handleClick={() => handleGenerateButton()}/>
+							<IconButton onClick={handleCopy} color="primary" aria-label="Copy to clipboard">
+								<FileCopyIcon/>
+							</IconButton>
+							<Button variant="contained" onClick={() => handleClear({ setResult })}>Clear result</Button>
 						</Box>
-
-					</Container>
-					
-					<br/>
-					<Container>
-						<Box sx={{ p: 2,  boxShadow: 3, bgcolor:'white', borderRadius: '16px',':hover' : {boxShadow: 6,}}} >
-							<Box sx ={{p:4}}>
-								<h3 id ='resultingTrack'>Resulting track:</h3>
+						<Box id="trackSelectorBox" sx={{p:4, minHeight:200}}>
+							<FileList selectedFile={selectedFile} uploadedFiles={files} handleClick={handleFileSelection}/>
+							<TrackList midiDataAsJSON={midiAsJSON} handleClick={handleTrackSelection}/>
+						</Box>
+					</Box>
+				</Container>
+				<br/>
+				<Container>
+					<Box sx={{ p: 2,  boxShadow: 3, bgcolor:'white', borderRadius: '16px',':hover' : {boxShadow: 6,}}} >
+						<Grid container spacing={2}>
+							<Grid item xs={4}>
+								<h3>Resulting track:</h3>
 								<SonicPiFormatter result={result}/>
-							</Box>
-						</Box>
-					</Container>
-				</Box>
-			</ThemeProvider>
+							</Grid>
+				
+						</Grid>
+					</Box>
+				</Container>
+			</Box>
 		</div>
 	);
 };
