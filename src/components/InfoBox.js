@@ -4,8 +4,7 @@ import Box from '@mui/material/Box';
 
 
 
-const infoBox = ( thing ) => {
-	console.log('thing', thing);
+const infoBox = ( ) => {
 	return (
 		<Box id="infoBox" sx={{p:4, minHeight:200}}>
 			<Typography variant='h5' component="h5">Let&#39;s get generating music! </Typography>

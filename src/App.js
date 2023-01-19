@@ -21,8 +21,8 @@ import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
 import Container from '@mui/material/Container';
-import { CssBaseline, Typography } from '@mui/material';
-import { createTheme, ThemeProvider, styled } from '@mui/material/styles';
+import { CssBaseline } from '@mui/material';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
 	palette: {
@@ -32,15 +32,9 @@ const theme = createTheme({
 		},
 		secondary: {
 			main: '#ce93d8',
-			// dark: will be calculated from palette.secondary.main,
 			contrastText: '#ffcc00',
 		},
-		// Used by `getContrastText()` to maximize the contrast between
-		// the background and the text.
 		contrastThreshold: 4,
-		// Used by the functions below to shift a color's luminance by approximately
-		// two indexes within its tonal palette.
-		// E.g., shift from Red 500 to Red 300 or Red 700.
 		tonalOffset: 0.3,
 	},
 });
@@ -69,11 +63,6 @@ const App = () => {
 		
 	}, []);
 
-	if (isLoading) {
-		return (
-			<h1>Loading information from backend...</h1>
-		);
-	}
 
 	const handleFileSelection = async (title) => {
 		setSelectedFile(title);
@@ -126,42 +115,54 @@ const App = () => {
 		let copyText = document.getElementById('resultMelody');
 		await navigator.clipboard.writeText(copyText.outerText);
 	});
+
 	return (
 		<div>
-			<CssBaseline/>
-			<Box sx={{bgcolor:'#fdf5df'}}>
-				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
-				<Header/>
-				<Container>
-					<Box sx={{ p: 2,  boxShadow: 3, bgcolor:'white', borderRadius: '16px', ':hover' : {boxShadow: 6,}}} >
-						<Box id="controlBox" sx={{p: 4, bgcolor: 'white',minHeight: 200 }}>
-							<FileUploadForm refreshFiles={refreshFileList}/>
-							<AmountSlider handleLengthChange={handleLength} handleSumChange={handleSumChange}/>
-							<GenerateControls handleClick={() => handleGenerateButton()}/>
-							<IconButton onClick={handleCopy} color="primary" aria-label="Copy to clipboard">
-								<FileCopyIcon/>
-							</IconButton>
-							<Button variant="contained" onClick={() => handleClear({ setResult })}>Clear result</Button>
-						</Box>
-						<Box id="trackSelectorBox" sx={{p:4, minHeight:200}}>
-							<FileList selectedFile={selectedFile} uploadedFiles={files} handleClick={handleFileSelection}/>
-							<TrackList midiDataAsJSON={midiAsJSON} handleClick={handleTrackSelection}/>
-						</Box>
-					</Box>
-				</Container>
-				<br/>
-				<Container>
-					<Box sx={{ p: 2,  boxShadow: 3, bgcolor:'white', borderRadius: '16px',':hover' : {boxShadow: 6,}}} >
-						<Grid container spacing={2}>
-							<Grid item xs={4}>
-								<h3>Resulting track:</h3>
-								<SonicPiFormatter result={result}/>
-							</Grid>
+			<ThemeProvider theme={theme}>
+				<CssBaseline/>
 				
-						</Grid>
-					</Box>
-				</Container>
-			</Box>
+				<Box sx={{bgcolor: 'primary.bg'}}>
+					<Header/>
+					
+					<Container>
+						<Box sx={{ p: 2,  boxShadow: 3, bgcolor:'white', borderRadius: '16px', ':hover' : {boxShadow: 6,}}} >
+							<Grid container item spacing={8} justify="center">
+								<Grid item xs={6}>
+									<Container>
+										<Box id="controlBox" sx={{p: 4, bgcolor: 'white',minHeight: 200 }}>
+											<FileUploadForm refreshFiles={refreshFileList}/>
+											<AmountSlider handleLengthChange={handleLength} handleSumChange={handleSumChange}/>
+											<GenerateControls handleClick={() => handleGenerateButton()}/>
+											<IconButton onClick={handleCopy} color="primary" aria-label="Copy to clipboard">
+												<FileCopyIcon/>
+											</IconButton>
+											<Button variant="contained" onClick={() => handleClear({ setResult })}>Clear result</Button>
+										</Box>
+										<Box id="trackSelectorBox" sx={{p:4, minHeight:200}}>
+											<FileList selectedFile={selectedFile} uploadedFiles={files} handleClick={handleFileSelection}/>
+											<TrackList midiDataAsJSON={midiAsJSON} handleClick={handleTrackSelection}/>
+										</Box>
+									</Container>
+								</Grid>
+								<Grid item xs={6}>
+									<InfoBox/>
+								</Grid>
+							</Grid>
+						</Box>
+
+					</Container>
+					
+					<br/>
+					<Container>
+						<Box sx={{ p: 2,  boxShadow: 3, bgcolor:'white', borderRadius: '16px',':hover' : {boxShadow: 6,}}} >
+							<Box sx ={{p:4}}>
+								<h3 id ='resultingTrack'>Resulting track:</h3>
+								<SonicPiFormatter result={result}/>
+							</Box>
+						</Box>
+					</Container>
+				</Box>
+			</ThemeProvider>
 		</div>
 	);
 };
