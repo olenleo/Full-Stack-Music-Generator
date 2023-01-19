@@ -13,13 +13,13 @@ import FileUploadForm from './components/FileUploadForm';
 import TrackList from './components/TrackList';
 import GenerateControls from './components/GenerateControls';
 import AmountSlider from './components/AmountSlider';
-
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import IconButton from '@mui/material/IconButton';
 import FileCopyIcon from '@mui/icons-material/FileCopyOutlined';
 import Container from '@mui/material/Container';
+import { CssBaseline } from '@mui/material';
 
 
 
@@ -105,38 +105,32 @@ const App = () => {
 		console.log(copyText);
 		await navigator.clipboard.writeText(copyText.outerText);
 	});
-	
 	return (
 		<div>
-			<Box sx={{bgcolor:'ghostwhite'}}>
+			<CssBaseline/>
+			<Box sx={{bgcolor:'#fdf5df'}}>
 				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
 				<Header/>
 				<Container>
-					<Box sx={{ p: 2,  boxShadow: 3, bgcolor:'white'}} >
-						<Grid container spacing={2}>
-							<Grid item xs={4}>
-								<Box id="controlBox" sx={{p: 4, bgcolor: 'white', shadow:4,minHeight: 200 }}>
-									<FileUploadForm refreshFiles={refreshFileList}/>
-									<AmountSlider handleLengthChange={handleLength} handleSumChange={handleSumChange}/>
-									<GenerateControls handleClick={() => handleGenerateButton()}/>
-									<IconButton onClick={handleCopy} color="primary" aria-label="Copy to clipboard">
-										<FileCopyIcon/>
-									</IconButton>
-									<Button variant="contained" onClick={() => handleClear({ setResult })}>Clear result</Button>
-								</Box>
-							</Grid>
-							<Grid item xs={4}>
-								<Box id="trackSelectorBox" sx={{p:4, shadow:3, minHeight:200}}>
-									<FileList selectedFile={selectedFile} uploadedFiles={files} handleClick={handleFileSelection}/>
-									<TrackList midiDataAsJSON={midiAsJSON} handleClick={handleTrackSelection}/>
-								</Box>
-							</Grid>
-						</Grid>	
+					<Box sx={{ p: 2,  boxShadow: 3, bgcolor:'white', borderRadius: '16px'}} >
+						<Box id="controlBox" sx={{p: 4, bgcolor: 'white',minHeight: 200 }}>
+							<FileUploadForm refreshFiles={refreshFileList}/>
+							<AmountSlider handleLengthChange={handleLength} handleSumChange={handleSumChange}/>
+							<GenerateControls handleClick={() => handleGenerateButton()}/>
+							<IconButton onClick={handleCopy} color="primary" aria-label="Copy to clipboard">
+								<FileCopyIcon/>
+							</IconButton>
+							<Button variant="contained" onClick={() => handleClear({ setResult })}>Clear result</Button>
+						</Box>
+						<Box id="trackSelectorBox" sx={{p:4, minHeight:200}}>
+							<FileList selectedFile={selectedFile} uploadedFiles={files} handleClick={handleFileSelection}/>
+							<TrackList midiDataAsJSON={midiAsJSON} handleClick={handleTrackSelection}/>
+						</Box>
 					</Box>
 				</Container>
 				<br/>
 				<Container>
-					<Box sx={{p:8, bgcolor:'white', shadow:3}}>
+					<Box sx={{ p: 2,  boxShadow: 3, bgcolor:'white', borderRadius: '16px'}} >
 						<Grid container spacing={2}>
 							<Grid item xs={4}>
 								<h3>Resulting track:</h3>

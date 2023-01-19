@@ -60,6 +60,7 @@
 |		|		| Separating sliders, study material.ui themes.|
 |		|		| Deploy issues. *X-Content-Type-Options* seem to keep popping up recently after deployments. |
 |		|		| Frontend, CSS and Grids w/ material UI					|
+|19.1	|	1.5	| Frontend, trying out colours, change layout															|
 | :----:|:----- |:-----                                                                                                 |
 | SUM   | 108   |                                                                                                        |
 
