@@ -112,7 +112,7 @@ const App = () => {
 				<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap"/>
 				<Header/>
 				<Container>
-					<Box sx={{ p: 2,  boxShadow: 3, bgcolor:'white', borderRadius: '16px'}} >
+					<Box sx={{ p: 2,  boxShadow: 3, bgcolor:'white', borderRadius: '16px', ':hover' : {boxShadow: 6,}}} >
 						<Box id="controlBox" sx={{p: 4, bgcolor: 'white',minHeight: 200 }}>
 							<FileUploadForm refreshFiles={refreshFileList}/>
 							<AmountSlider handleLengthChange={handleLength} handleSumChange={handleSumChange}/>
@@ -130,7 +130,7 @@ const App = () => {
 				</Container>
 				<br/>
 				<Container>
-					<Box sx={{ p: 2,  boxShadow: 3, bgcolor:'white', borderRadius: '16px'}} >
+					<Box sx={{ p: 2,  boxShadow: 3, bgcolor:'white', borderRadius: '16px',':hover' : {boxShadow: 6,}}} >
 						<Grid container spacing={2}>
 							<Grid item xs={4}>
 								<h3>Resulting track:</h3>
