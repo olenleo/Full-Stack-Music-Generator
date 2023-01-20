@@ -8,8 +8,10 @@ import ListItemButton from '@mui/material/ListItemButton';
 import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import { Button } from '@mui/material';
+import IconButton from '@mui/material/IconButton';
+import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
-const FileList = ({selectedFile, setSelectedFile, setFileIsSelected, uploadedFiles, fileService, setMidiAsJSON}) => {
+const FileList = ({selectedFile, setSelectedFile, setFileIsSelected, uploadedFiles, setUploadedFiles, fileService, setMidiAsJSON}) => {
 	
 	const [listShouldRender, setListShouldRender] = useState(true);
 
@@ -23,11 +25,25 @@ const FileList = ({selectedFile, setSelectedFile, setFileIsSelected, uploadedFil
 	};
 	
 	const getFile = async(filename) => {
-		setSelectedFile(filename);
+		setSelectedFile(filename.name);
 		setFileIsSelected(true);
 		closeList();
-		fileService.getMidiData(filename).then(data => setMidiAsJSON(data));
+		fileService.getMidiData(filename.name).then(data => setMidiAsJSON(data));
 	};
+
+	const handleRemove = (e) => {
+		console.log(e);
+		fetch('http://localhost:3001/api/files/delete/' + e, {
+			headers: {
+				'Access-Control-Allow-Credentials': true,
+				'Access-Control-Allow-Origin': '*',
+				'Content-Type': 'application/json'
+			},
+			method: 'DELETE',
+			body: e
+		});
+	};
+
 	if (uploadedFiles === null) {
 		return (
 			<div>
@@ -45,7 +61,7 @@ const FileList = ({selectedFile, setSelectedFile, setFileIsSelected, uploadedFil
 						<List key ={f.id}>
 							<Divider />
 							<ListItem disablePadding>
-								<ListItemButton onClick={() => getFile(f.name)}>
+								<ListItemButton onClick={() => getFile(f)}>
 									<ListItemText primary={f.name}/>
 								</ListItemButton>
 							</ListItem>
@@ -58,7 +74,9 @@ const FileList = ({selectedFile, setSelectedFile, setFileIsSelected, uploadedFil
 	} else {
 		return(
 			<div>
-				<h3>Selected File: <Button onClick={() => openList()}>{selectedFile}</Button></h3>
+				<h3>Selected File: <Button onClick={() => openList()}>{selectedFile}</Button><IconButton onClick={() => handleRemove(selectedFile)} color="secondary" aria-label="Copy to clipboard">
+					<DeleteForeverIcon/>
+				</IconButton></h3>
 			</div>
 		);
 	}

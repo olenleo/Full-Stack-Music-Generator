@@ -99,7 +99,7 @@ const ControlElement = ( { result, setResult	} ) => {
 								<Button variant="contained" onClick={() => handleClear({ setResult })}>Clear result</Button>
 							</Box>
 							<Box id="trackSelectorBox" sx={{p:4, minHeight:200, bgcolor: 'primary.bg', borderRadius: '16px'}}>
-								<FileList selectedFile={selectedFile} setSelectedFile={setSelectedFile} uploadedFiles={files} fileService={fileService} setFileIsSelected={setFileIsSelected} setMidiAsJSON={setMidiAsJSON}/>
+								<FileList selectedFile={selectedFile} setSelectedFile={setSelectedFile} uploadedFiles={files} setUploadedFiles={setFiles} fileService={fileService} setFileIsSelected={setFileIsSelected} setMidiAsJSON={setMidiAsJSON}/>
 								<TrackList midiDataAsJSON={midiAsJSON} handleClick={handleTrackSelection}/>
 							</Box>
 						</Container>

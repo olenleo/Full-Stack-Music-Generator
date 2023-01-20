@@ -65,6 +65,9 @@
 |		|		| Read up on scroll into view; Decide it's not necessary for such a small view. |
 |		|		| Start refactoring application|
 |20.1	|	1	| Refactor control and result boxes to separate components 											|
+| 		|	1	| Backend: Deletion logic  											|
+| 		|	2.5	| Backend: Struggling with deletion. Reverting in order to write up some documentation for project submission. |
+|		|	1	| Documentation																							|
 | :----:|:----- |:-----                                                                                                 |
-| SUM   | 115.5  |                                                                                                        |
+| SUM   | 119  |                                                                                                        |
 
