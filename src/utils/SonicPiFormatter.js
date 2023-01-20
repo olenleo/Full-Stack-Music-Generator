@@ -13,8 +13,32 @@ let noteEvents = [];
 const notes = ['C', 'Cs', 'D', 'Ds', 'E', 'F', 'Fs', 'G', 'Gs', 'A', 'As', 'B', 'C'];
 const tresholds = [109,97,85,73,61,49,37,25,13];
 
+const SonicPiFormatter =( {result} ) => {
+	const array = result.result;
+	if (array == undefined || array[0] == undefined) {
+		return(<div><p>Please select song title and track.</p></div>);
+	}
+	noteEvents = [];
+	array.map((item, index) => (
+		formatAndPushNoteEvent(item, index)
+	));
+
+	return (
+		<div>
+			<code id="resultMelody">
+				<p>use_synth :blade</p>
+				<p>with_fx :reverb do</p>
+				{noteEvents.map(noteJSONarray => (
+					<Note key = {noteJSONarray.key} note={noteJSONarray.pitch} amplitude={noteJSONarray.amp} duration={noteJSONarray.duration} rest = {noteJSONarray.rest} amp = {noteJSONarray.amp}></Note>
+				))}
+				<p>end</p>
+			</code>
+            
+		</div>
+	);
+};
+
 const parseNote = (note) => {
-    
 	if (typeof note === String) {
 		return 0;
 	} else if (typeof note === 'number') {
@@ -49,31 +73,6 @@ const formatAndPushNoteEvent = (item, index) => {
 		};
 		noteEvents.push(noteAsJSON);
 	});
-};
-
-
-const SonicPiFormatter =( {result} ) => {
-	if (result === undefined) {
-		return(<div><p>Please select song title and track.</p></div>);
-	}
-	noteEvents = [];
-	result.map((item, index) => (
-		formatAndPushNoteEvent(item, index)
-	));
-
-	return (
-		<div>
-			<code id="resultMelody">
-				<p>use_synth :blade</p>
-				<p>with_fx :reverb do</p>
-				{noteEvents.map(noteJSONarray => (
-					<Note key = {noteJSONarray.key} note={noteJSONarray.pitch} amplitude={noteJSONarray.amp} duration={noteJSONarray.duration} rest = {noteJSONarray.rest} amp = {noteJSONarray.amp}></Note>
-				))}
-				<p>end</p>
-			</code>
-            
-		</div>
-	);
 };
 
 export default SonicPiFormatter;

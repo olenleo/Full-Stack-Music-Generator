@@ -1,18 +1,12 @@
-// Necessary variables for midi manipulation
-
 let tableOfOdds = [];
 let sumOfOdds = 0;
-let num = getDouble();
-function getDouble() {
+let num = getRandomDouble();
+
+function getRandomDouble() {
 	return  Math.random();
 }
 
-
 function printTrie(root, freqArray, depth) {
-    
-	if (root.end) {
-		console.log(freqArray);
-	}
     
 	for (let i = 0; i < 127; i++) {
         
@@ -22,7 +16,6 @@ function printTrie(root, freqArray, depth) {
 		}
 	}
 }
-
 
 /**
  * Generate a new note sequence from frequency of notes in trie
@@ -35,11 +28,10 @@ function generateNoteChain(root, freqArray, depth, division) {
 		return freqArray;
 	}
 	
-
 	sumOfOdds = 0; 
 	createTableOfOdds(root);
 	calculateOdds();
-	num = getDouble();
+	num = getRandomDouble();
 	
 	for (let i = 0; i < tableOfOdds.length; i++) {
 		if (num <= tableOfOdds[i] && tableOfOdds[i] > 0) {
@@ -57,13 +49,10 @@ function generateNoteChain(root, freqArray, depth, division) {
 			freqArray[depth] = contentAsJSON;
 			return generateNoteChain(root.children[i], freqArray, depth + 1, division);
 		}
-	
 	}
 }
 
-
 function createTableOfOdds(root) {
-	// Generate empty array
 	tableOfOdds = Array.apply(null, Array(127)).map(Number.prototype.valueOf,0);
 	for (let i = 0; i < 127; i++){
 		if (root.children[i] !== undefined) {
@@ -84,7 +73,6 @@ function calculateOdds() {
 		}
 	}
 }
-
 
 export {generateNoteChain, printTrie};
 

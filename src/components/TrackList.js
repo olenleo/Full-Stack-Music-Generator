@@ -30,7 +30,6 @@ const TrackList = ( { midiDataAsJSON, handleClick }) => {
 	} 
 	if (midiDataAsJSON && listShouldRender) {
 		const trackInfo = midiDataAsJSON.track;
-		console.log('trackInfo', trackInfo);
 		return (        
 			<div>
 				<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>

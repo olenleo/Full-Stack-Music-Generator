@@ -64,6 +64,7 @@
 |		|		| Info box at main page, extracting components from main, Material UI theme 	|
 |		|		| Read up on scroll into view; Decide it's not necessary for such a small view. |
 |		|		| Start refactoring application|
+|20.1	|	1	| Refactor control and result boxes to separate components 											|
 | :----:|:----- |:-----                                                                                                 |
-| SUM   | 114.5  |                                                                                                        |
+| SUM   | 115.5  |                                                                                                        |
 

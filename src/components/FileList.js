@@ -9,15 +9,24 @@ import ListItemText from '@mui/material/ListItemText';
 import Divider from '@mui/material/Divider';
 import { Button } from '@mui/material';
 
-const FileList = ({selectedFile, uploadedFiles, handleClick}) => {
+const FileList = ({selectedFile, setSelectedFile, setFileIsSelected, uploadedFiles, fileService, setMidiAsJSON}) => {
+	
 	const [listShouldRender, setListShouldRender] = useState(true);
+
+	const openList = () => {
+		setSelectedFile();
+		setListShouldRender(true);
+	};
 	
 	const closeList = () => {
 		setListShouldRender(false);
 	};
-
-	const openList = () => {
-		setListShouldRender(true);
+	
+	const getFile = async(filename) => {
+		setSelectedFile(filename);
+		setFileIsSelected(true);
+		closeList();
+		fileService.getMidiData(filename).then(data => setMidiAsJSON(data));
 	};
 	if (uploadedFiles === null) {
 		return (
@@ -25,8 +34,8 @@ const FileList = ({selectedFile, uploadedFiles, handleClick}) => {
 				<p>No files present.</p>
 			</div>
 		);
-	}    
-	if (selectedFile && listShouldRender === true) {
+	}  
+	if (selectedFile === undefined || !selectedFile && listShouldRender === true) {
 		return (        
 			<div>
 				<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons"/>
@@ -36,7 +45,7 @@ const FileList = ({selectedFile, uploadedFiles, handleClick}) => {
 						<List key ={f.id}>
 							<Divider />
 							<ListItem disablePadding>
-								<ListItemButton onClick={() => {handleClick(f), closeList();}}>
+								<ListItemButton onClick={() => getFile(f.name)}>
 									<ListItemText primary={f.name}/>
 								</ListItemButton>
 							</ListItem>
@@ -49,7 +58,7 @@ const FileList = ({selectedFile, uploadedFiles, handleClick}) => {
 	} else {
 		return(
 			<div>
-				<h3>Selected File: <Button onClick={() => openList()}>{selectedFile.name}</Button></h3>
+				<h3>Selected File: <Button onClick={() => openList()}>{selectedFile}</Button></h3>
 			</div>
 		);
 	}
