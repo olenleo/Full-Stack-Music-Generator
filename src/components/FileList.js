@@ -11,7 +11,7 @@ import { Button } from '@mui/material';
 import IconButton from '@mui/material/IconButton';
 import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 
-const FileList = ({selectedFile, setSelectedFile, setFileIsSelected, uploadedFiles, setUploadedFiles, fileService, setMidiAsJSON}) => {
+const FileList = ({selectedFile, setSelectedFile, setFileIsSelected, uploadedFiles, setUploadedFiles, fileService, setMidiAsJSON, setSelectedTrack}) => {
 	
 	const [listShouldRender, setListShouldRender] = useState(true);
 
@@ -32,16 +32,14 @@ const FileList = ({selectedFile, setSelectedFile, setFileIsSelected, uploadedFil
 	};
 
 	const handleRemove = (e) => {
+		fileService.deleteFile(e);
+		closeList();
+		setSelectedFile();
+		setFileIsSelected(false);
+		setSelectedTrack();
 		console.log(e);
-		fetch('http://localhost:3001/api/files/delete/' + e, {
-			headers: {
-				'Access-Control-Allow-Credentials': true,
-				'Access-Control-Allow-Origin': '*',
-				'Content-Type': 'application/json'
-			},
-			method: 'DELETE',
-			body: e
-		});
+		setUploadedFiles(uploadedFiles.filter(file => file.name !== e ));
+		
 	};
 
 	if (uploadedFiles === null) {

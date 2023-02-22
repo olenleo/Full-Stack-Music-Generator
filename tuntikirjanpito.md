@@ -68,6 +68,7 @@
 | 		|	1	| Backend: Deletion logic  											|
 | 		|	2.5	| Backend: Struggling with deletion. Reverting in order to write up some documentation for project submission. |
 |		|	1	| Documentation																							|
+| 22.2	|	2	| Add delete file function 											|
 | :----:|:----- |:-----                                                                                                 |
-| SUM   | 119  |                                                                                                        |
+| SUM   | 121  |                                                                                                        |
 
