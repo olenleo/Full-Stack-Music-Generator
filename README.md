@@ -26,17 +26,19 @@ Note that the backend needs to run on port 3001 - the backend can be started wit
 
 ## Technical details
 Tech stack:
+
 Node.js backend
+
 React frontend
+
 MongoDB for database
+
 Material UI css library
-Fly.io 
+
+Fly.io hosting
 
 ## Issues
 - The music generation algorithm is bugged. But, it gives sufficiently musical results.
-- File deletion does not work
-- 
-
 
 ## External libraries:
 [midi-parser-js](https://www.npmjs.com/package/midi-parser-js)
