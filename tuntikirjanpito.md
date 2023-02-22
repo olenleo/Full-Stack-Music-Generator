@@ -71,5 +71,5 @@
 | 22.2	|	2	| Add delete file function 											|
 |		|	1	| Deploy, code cleanup |
 | :----:|:----- |:-----                                                                                                 |
-| SUM   | 121  |                                                                                                        |
+| SUM   | 123	  |                                                                                                        |
 
