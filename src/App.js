@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useState, useEffect} from 'react';
+import React, { useState } from 'react';
 
 import Header from './components/Header';
 import ControlElement from './components/ControlElement';

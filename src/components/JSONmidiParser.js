@@ -5,8 +5,7 @@ const JSONmidiParser = ({midiData, title, track}) => {
 	if (midiData.length === 0) {
 		return (
 			<div>
-				<h3>The midi data should be here.</h3>
-				<p>The backend has not probably loaded the information yet.</p>
+				<h3>Loading midi data</h3>
 			</div>
 		);
 	}
@@ -25,7 +24,6 @@ const JSONmidiParser = ({midiData, title, track}) => {
 			<p>Track title: {title}</p>
 			<p>Number of tracks: {tracks}</p>
 			<p>Render track:</p>
-			
 		</div>
 	);
 };

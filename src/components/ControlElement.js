@@ -109,9 +109,7 @@ const ControlElement = ( { result, setResult	} ) => {
 					</Grid>
 				</Grid>
 			</Box>
-
 		</Container>
-
 	);
 };
 
