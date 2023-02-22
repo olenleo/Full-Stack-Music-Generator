@@ -17,9 +17,9 @@ function NoteReader() {
 	noteStartDeltaTimes = [];
 
 	const setUpMidiData = (trackdata) => {
-		for (let e in trackdata) {
-			if (e.type === 9) {
-				offset = e.deltaTime;
+		for (let event in trackdata) {
+			if (event.type === 9) {
+				offset = event.deltaTime;
 				break;
 			}
 		}

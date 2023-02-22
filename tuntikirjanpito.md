@@ -69,6 +69,7 @@
 | 		|	2.5	| Backend: Struggling with deletion. Reverting in order to write up some documentation for project submission. |
 |		|	1	| Documentation																							|
 | 22.2	|	2	| Add delete file function 											|
+|		|	1	| Deploy, code cleanup |
 | :----:|:----- |:-----                                                                                                 |
 | SUM   | 121  |                                                                                                        |
 

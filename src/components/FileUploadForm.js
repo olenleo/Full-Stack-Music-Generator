@@ -10,7 +10,6 @@ const FileUploadForm = ( {refreshFiles}) => {
 		const formData = new FormData();
 		formData.append('uploadMidi', selectedFile);
 		try {
-			// eslint-disable-next-line no-unused-vars
 			files.upload(formData).then(response => response.data);
 		}
 		catch(error) {

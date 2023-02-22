@@ -2,8 +2,6 @@ import React from 'react';
 import { Typography } from '@mui/material';
 import Box from '@mui/material/Box';
 
-
-
 const infoBox = ( ) => {
 	return (
 		<Box id="infoBox" sx={{p:4, minHeight:200}}>

@@ -26,7 +26,6 @@ const Header = () => {
 				</Box>
 			</Container>
 		</div>
-		
 	);
 };
 export default Header;

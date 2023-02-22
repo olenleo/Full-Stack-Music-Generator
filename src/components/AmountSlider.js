@@ -19,7 +19,7 @@ const AmountSlider = (props) => {
 				marks
 				min={3}
 				onChange={(event, value) => { props.handleLengthChange(value);}}
-				max={15}
+				max={30}
 			/>
 			</p>
 			<p><i>Amount of trie sequences</i><Slider

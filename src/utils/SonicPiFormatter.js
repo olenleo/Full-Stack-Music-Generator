@@ -66,7 +66,7 @@ const formatAndPushNoteEvent = (item, index) => {
 		const key = uniqid('index-', index);
 		const noteAsJSON = {
 			'pitch' : `${pitch}`,
-			'amp' : 1, //`${note.amp}`,
+			'amp' : 1, //`${note.amp}` is currently broken
 			'duration' : `${note.duration}`,
 			'rest' : `${note.rest}`,
 			'key' : `${key}`
